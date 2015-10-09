@@ -5,4 +5,5 @@ class SubCategory < ActiveRecord::Base
   belongs_to :category
   belongs_to :wallet
   has_many :expense_items
+  has_many :short_ccs
 end

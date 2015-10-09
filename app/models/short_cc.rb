@@ -3,4 +3,5 @@ class ShortCc < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   belongs_to :sub_category
+  has_many :short_cps
 end

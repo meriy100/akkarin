@@ -5,4 +5,5 @@ class Category < ActiveRecord::Base
   belongs_to :color
   has_many :sub_categories
   has_many :expense_items
+  has_many :short_ccs
 end
