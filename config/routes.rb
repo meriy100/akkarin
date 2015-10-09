@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :expense_items
+  resources :sub_categories
   resources :categories
   resources :wallets
   resources :colors

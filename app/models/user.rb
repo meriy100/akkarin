@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
   has_secure_password
+
+  has_many :wallets
+  has_many :categories
+  has_many :sub_categories
+  has_many :expense_items
 end
