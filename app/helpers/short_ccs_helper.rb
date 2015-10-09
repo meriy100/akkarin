@@ -1,0 +1,2 @@
+module ShortCcsHelper
+end

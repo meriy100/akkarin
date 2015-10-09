@@ -1,0 +1,25 @@
+h1 Listing short_ccs
+
+table
+  thead
+    tr
+      th User
+      th Category
+      th Sub category
+      th
+      th
+      th
+
+  tbody
+    - @short_ccs.each do |short_cc|
+      tr
+        td = short_cc.user_id
+        td = short_cc.category_id
+        td = short_cc.sub_category_id
+        td = link_to 'Show', short_cc
+        td = link_to 'Edit', edit_short_cc_path(short_cc)
+        td = link_to 'Destroy', short_cc, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Short cc', new_short_cc_path

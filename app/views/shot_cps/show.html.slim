@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Short cc:
+  = @shot_cp.short_cc_id
+p
+  strong User:
+  = @shot_cp.user_id
+p
+  strong Price:
+  = @shot_cp.price
+
+= link_to 'Edit', edit_shot_cp_path(@shot_cp)
+'|
+= link_to 'Back', shot_cps_path
