@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @category.name
+p
+  strong Color:
+  = @category.color_id
+p
+  strong User:
+  = @category.user_id
+p
+  strong Wallet:
+  = @category.wallet_id
+
+= link_to 'Edit', edit_category_path(@category)
+'|
+= link_to 'Back', categories_path
