@@ -1,2 +1,6 @@
 class ShortCc < ActiveRecord::Base
+  validates :user_id, :category_id, :sub_category_id, precense: true
+  belongs_to :user
+  belongs_to :category
+  belongs_to :sub_category
 end
