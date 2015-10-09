@@ -1,0 +1,35 @@
+h1 Listing budgets
+
+table
+  thead
+    tr
+      th Name
+      th User
+      th Category
+      th Sub category
+      th Price
+      th Started date
+      th Finished date
+      th Remarks
+      th
+      th
+      th
+
+  tbody
+    - @budgets.each do |budget|
+      tr
+        td = budget.name
+        td = budget.user_id
+        td = budget.category_id
+        td = budget.sub_category_id
+        td = budget.price
+        td = budget.started_date
+        td = budget.finished_date
+        td = budget.remarks
+        td = link_to 'Show', budget
+        td = link_to 'Edit', edit_budget_path(budget)
+        td = link_to 'Destroy', budget, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Budget', new_budget_path

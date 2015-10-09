@@ -1,0 +1,29 @@
+h1 Listing transfers
+
+table
+  thead
+    tr
+      th User
+      th Price
+      th Form wallet
+      th To wallet
+      th Commission
+      th
+      th
+      th
+
+  tbody
+    - @transfers.each do |transfer|
+      tr
+        td = transfer.user_id
+        td = transfer.price
+        td = transfer.form_wallet_id
+        td = transfer.to_wallet_id
+        td = transfer.commission
+        td = link_to 'Show', transfer
+        td = link_to 'Edit', edit_transfer_path(transfer)
+        td = link_to 'Destroy', transfer, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Transfer', new_transfer_path

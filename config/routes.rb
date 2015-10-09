@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :transfers
+  resources :salaries
+  resources :budgets
   resources :shot_cps
   resources :short_ccs
   resources :expense_items

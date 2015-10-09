@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong User:
+  = @transfer.user_id
+p
+  strong Price:
+  = @transfer.price
+p
+  strong Form wallet:
+  = @transfer.form_wallet_id
+p
+  strong To wallet:
+  = @transfer.to_wallet_id
+p
+  strong Commission:
+  = @transfer.commission
+
+= link_to 'Edit', edit_transfer_path(@transfer)
+'|
+= link_to 'Back', transfers_path

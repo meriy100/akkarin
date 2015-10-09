@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009134614) do
+ActiveRecord::Schema.define(version: 20151009140222) do
+
+  create_table "budgets", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "sub_category_id"
+    t.integer  "price"
+    t.date     "started_date"
+    t.date     "finished_date"
+    t.text     "remarks"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +54,16 @@ ActiveRecord::Schema.define(version: 20151009134614) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "salaries", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "price"
+    t.text     "remarkds"
+    t.integer  "wallets_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "short_ccs", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
@@ -64,6 +87,16 @@ ActiveRecord::Schema.define(version: 20151009134614) do
     t.integer  "wallet_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "price"
+    t.integer  "form_wallet_id"
+    t.integer  "to_wallet_id"
+    t.integer  "commission"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "users", force: :cascade do |t|
