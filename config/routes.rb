@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
-  resources :transfers
-  resources :salaries
-  resources :budgets
-  resources :shot_cps
-  resources :short_ccs
-  resources :expense_items
-  resources :sub_categories
-  resources :categories
-  resources :wallets
-  resources :colors
-  namespace :users do
-
+  namespace :user do
+    resources :transfers
+    resources :salaries
+    resources :budgets
+    resources :shot_cps
+    resources :short_ccs
+    resources :expense_items
+    resources :categories do
+      resources :sub_categories
+    end
+    resources :wallets
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'user/expense_items#index'
+
+  get 'user/login', to: 'user/login#index', as: 'user/login'
+  get 'user/logout', to: 'user/login#logout'
+  post 'user/login/login'
+  get 'user', to: 'user#index', as: 'user_top'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
