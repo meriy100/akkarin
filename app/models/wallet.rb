@@ -4,4 +4,5 @@ class Wallet < ActiveRecord::Base
   has_many :categories
   has_many :sub_categories
   has_many :expense_items
+  has_many :wallets
 end

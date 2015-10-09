@@ -6,4 +6,5 @@ class Category < ActiveRecord::Base
   has_many :sub_categories
   has_many :expense_items
   has_many :short_ccs
+  has_many :budgets
 end

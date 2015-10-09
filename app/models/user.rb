@@ -14,4 +14,7 @@ class User < ActiveRecord::Base
   has_many :expense_items
   has_many :short_ccs
   has_many :short_cps
+  has_many :budgets
+  has_many :salaries
+  has_many :transfers
 end
