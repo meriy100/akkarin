@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   root 'user/expense_items#index'
 
   get 'user/service', to: 'user/service#index', as: 'user/service'
+  get 'user/service/create', to: 'user/service#create', as: 'user/service/create'
 
   get 'user/login', to: 'user/login#index', as: 'user/login'
   get 'user/logout', to: 'user/login#logout'
