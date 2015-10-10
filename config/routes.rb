@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'user/expense_items#index'
 
+  get 'user/service', to: 'user/service#index', as: 'user/service'
+
   get 'user/login', to: 'user/login#index', as: 'user/login'
   get 'user/logout', to: 'user/login#logout'
   post 'user/login/login'

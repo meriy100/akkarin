@@ -42,5 +42,14 @@ ExpenseItem.create([
   {name: 'チーズインハンバーグ', user_id: 1, category_id: 1, price: 500},
 ])
 
+ShortCc.create([
+  {user_id: 1, category_id: 1, sub_category_id: 1},
+  {user_id: 1, category_id: 1},
+])
 
+ShortCp.create([
+  {user_id: 1, short_cc_id: 1, price: 100},
+  {user_id: 1, short_cc_id: 1, price: 150},
+  {user_id: 1, short_cc_id: 2, price: 650},
+])
 
