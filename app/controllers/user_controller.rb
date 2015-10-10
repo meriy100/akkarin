@@ -1,5 +1,6 @@
 class UserController < ApplicationController
-# layout 'user'
+  layout 'user'
+  before_action :set_user
   before_filter :authenticated
   def index
     redirect_to user_expense_items_path
@@ -13,5 +14,8 @@ class UserController < ApplicationController
       end
     end
     redirect_to login_path unless @user
+  end
+  def set_user
+    @user = session[:user_id]
   end
 end
