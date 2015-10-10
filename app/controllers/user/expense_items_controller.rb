@@ -1,10 +1,10 @@
-class ExpenseItemsController < ApplicationController
+class User::ExpenseItemsController < UserController
   before_action :set_expense_item, only: [:show, :edit, :update, :destroy]
 
   # GET /expense_items
   # GET /expense_items.json
   def index
-    @expense_items = ExpenseItem.all
+    @expense_items = ExpenseItem.where user: @user
   end
 
   # GET /expense_items/1
@@ -25,14 +25,12 @@ class ExpenseItemsController < ApplicationController
   # POST /expense_items.json
   def create
     @expense_item = ExpenseItem.new(expense_item_params)
-
+    @expense_item.user = @user
     respond_to do |format|
       if @expense_item.save
-        format.html { redirect_to @expense_item, notice: 'Expense item was successfully created.' }
-        format.json { render :show, status: :created, location: @expense_item }
+        format.html { redirect_to user_expense_item_path(@expense_item), notice: 'Expense item was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @expense_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +40,9 @@ class ExpenseItemsController < ApplicationController
   def update
     respond_to do |format|
       if @expense_item.update(expense_item_params)
-        format.html { redirect_to @expense_item, notice: 'Expense item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @expense_item }
+        format.html { redirect_to user_expense_item_path(@expense_item), notice: 'Expense item was successfully created.' }
       else
         format.html { render :edit }
-        format.json { render json: @expense_item.errors, status: :unprocessable_entity }
       end
     end
   end

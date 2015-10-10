@@ -1,0 +1,24 @@
+= form_for @salary do |f|
+  - if @salary.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@salary.errors.count, "error")} prohibited this salary from being saved:"
+      ul
+        - @salary.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :price
+    = f.number_field :price
+  .field
+    = f.label :remarkds
+    = f.text_area :remarkds
+  .field
+    = f.label :wallets_id
+    = f.number_field :wallets_id
+  .actions = f.submit

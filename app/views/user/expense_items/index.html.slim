@@ -1,0 +1,33 @@
+h1 Listing expense_items
+
+table
+  thead
+    tr
+      th Name
+      th User
+      th Category
+      th Sub category
+      th Price
+      th Remarks
+      th Wallet
+      th
+      th
+      th
+
+  tbody
+    - @expense_items.each do |expense_item|
+      tr
+        td = expense_item.name
+        td = expense_item.user_id
+        td = expense_item.category.try(:name)
+        td = expense_item.sub_category.try(:name)
+        td = expense_item.price
+        td = expense_item.remarks
+        td = expense_item.wallet.try(:name)
+        td = link_to 'Show', user_expense_item_path(expense_item)
+        td = link_to 'Edit', edit_user_expense_item_path(expense_item)
+        td = link_to 'Destroy', user_expense_item_path(expense_item), data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Expense item', new_user_expense_item_path

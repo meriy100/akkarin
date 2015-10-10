@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @budget.name
+p
+  strong User:
+  = @budget.user_id
+p
+  strong Category:
+  = @budget.category_id
+p
+  strong Sub category:
+  = @budget.sub_category_id
+p
+  strong Price:
+  = @budget.price
+p
+  strong Started date:
+  = @budget.started_date
+p
+  strong Finished date:
+  = @budget.finished_date
+p
+  strong Remarks:
+  = @budget.remarks
+
+= link_to 'Edit', edit_budget_path(@budget)
+'|
+= link_to 'Back', budgets_path

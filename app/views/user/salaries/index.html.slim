@@ -1,0 +1,29 @@
+h1 Listing salaries
+
+table
+  thead
+    tr
+      th Name
+      th User
+      th Price
+      th Remarkds
+      th Wallets
+      th
+      th
+      th
+
+  tbody
+    - @salaries.each do |salary|
+      tr
+        td = salary.name
+        td = salary.user_id
+        td = salary.price
+        td = salary.remarkds
+        td = salary.wallets_id
+        td = link_to 'Show', salary
+        td = link_to 'Edit', edit_salary_path(salary)
+        td = link_to 'Destroy', salary, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Salary', new_salary_path

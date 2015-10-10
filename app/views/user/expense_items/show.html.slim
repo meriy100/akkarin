@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @expense_item.name
+p
+  strong User:
+  = @expense_item.user_id
+p
+  strong Category:
+  = @expense_item.category_id
+p
+  strong Sub category:
+  = @expense_item.sub_category_id
+p
+  strong Price:
+  = @expense_item.price
+p
+  strong Remarks:
+  = @expense_item.remarks
+p
+  strong Wallet:
+  = @expense_item.wallet_id
+
+= link_to 'Edit', edit_user_expense_item_path(@expense_item)
+'|
+= link_to 'Back', user_expense_items_path

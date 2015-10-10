@@ -1,0 +1,25 @@
+h1 Listing shot_cps
+
+table
+  thead
+    tr
+      th Short cc
+      th User
+      th Price
+      th
+      th
+      th
+
+  tbody
+    - @shot_cps.each do |shot_cp|
+      tr
+        td = shot_cp.short_cc_id
+        td = shot_cp.user_id
+        td = shot_cp.price
+        td = link_to 'Show', shot_cp
+        td = link_to 'Edit', edit_shot_cp_path(shot_cp)
+        td = link_to 'Destroy', shot_cp, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Shot cp', new_shot_cp_path
