@@ -5,6 +5,7 @@ class User::ExpenseItemsController < UserController
   # GET /expense_items
   # GET /expense_items.json
   def index
+    @wallets = Wallet.where user: @user
     @expense_items = ExpenseItem.where user: @user
   end
 

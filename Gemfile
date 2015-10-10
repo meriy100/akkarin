@@ -41,6 +41,8 @@ gem 'slim-rails'
 gem "ransack" # 検索
 gem "rmagick"
 
+gem 'jpmobile'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 end
