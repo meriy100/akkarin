@@ -12,7 +12,7 @@ table
 
   tbody
     - @short_ccs.each do |short_cc|
-      tr
+      tr[class="category #{short_cc.category.color.value}"]
         td = short_cc.user_id
         td = short_cc.category_id
         td = short_cc.sub_category_id

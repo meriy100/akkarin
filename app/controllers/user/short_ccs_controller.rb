@@ -1,10 +1,10 @@
-class ShortCcsController < ApplicationController
+class User::ShortCcsController < UserController
   before_action :set_short_cc, only: [:show, :edit, :update, :destroy]
 
   # GET /short_ccs
   # GET /short_ccs.json
   def index
-    @short_ccs = ShortCc.all
+    @short_ccs = ShortCc.where user: @user
   end
 
   # GET /short_ccs/1

@@ -1,13 +1,27 @@
-$red:#D04255;
-$orange:#F0BA32;
-$yellow:#FFEA2A;
-$tee:#B2CF3E;
-$green:#1BA466;
-$sky:#1E98B9;
-$blue:#208DC3;
-$boot:#7379AE;
-$purple:#A53F88;
-$redpurple:#C23685;
+$red:       #D04255;
+$orange:    #F0BA32;
+$yellow:    #FFEA2A;
+$tea:       #B2CF3E;
+$green:     #1BA466;
+$sky:       #1E98B9;
+$blue:      #208DC3;
+$boot:      #7379AE;
+$purple:    #A53F88;
+$redpurple: #C23685;
+
+
+$red-background:        #ECACB5;
+$orange-background:     #F9E3AA;
+$yellow-background:     #FFF7AA;
+$tea-background:        #DFECAA;
+$green-background:      #91DBB9;
+$sky-background:        #97D3E3;
+$blue-background:       #9ACDE7;
+$boot-background:       #BFC2DF;
+$purple-background:     #DBA6CC;
+$redpurple-background:  #E7A5C9;
+
+
 
 p.category{
   color: #fff;
@@ -22,16 +36,16 @@ p.category{
   }
 }
 
-/*
-p.bg-blue {
-    color: #fff;
-    background-color: $blue;
-    border-radius: 0.5em;
+tr.category{
+  color: #111;
+  &.blue{
+    background-color: $blue-background;
+  }
+  &.red{
+    background-color: $red-background;
+  }
+  &.tea{
+    background-color: $tea-background;
+  }
 }
-p.bg-red{
-    color: #fff;
-    background-color: $red;
-    border-radius: 0.5em;
-    text-align: center
-}
-*/
+

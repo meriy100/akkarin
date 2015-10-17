@@ -1,4 +1,4 @@
-= form_for @short_cc do |f|
+= form_for [:user, @short_cc] do |f|
   - if @short_cc.errors.any?
     #error_explanation
       h2 = "#{pluralize(@short_cc.errors.count, "error")} prohibited this short_cc from being saved:"
@@ -7,11 +7,8 @@
           li = message
 
   .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
     = f.label :category_id
-    = f.number_field :category_id
+    = f.collection_select :category_id, Category.where(user: @user), :id, :name
   .field
     = f.label :sub_category_id
     = f.number_field :sub_category_id
