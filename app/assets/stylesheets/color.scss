@@ -1,0 +1,37 @@
+$red:#D04255;
+$orange:#F0BA32;
+$yellow:#FFEA2A;
+$tee:#B2CF3E;
+$green:#1BA466;
+$sky:#1E98B9;
+$blue:#208DC3;
+$boot:#7379AE;
+$purple:#A53F88;
+$redpurple:#C23685;
+
+p.category{
+  color: #fff;
+  border-radius: 0.5em;
+  text-align: center;
+
+  &.blue{
+    background-color: $blue;
+  }
+  &.red{
+    background-color: $red;
+  }
+}
+
+/*
+p.bg-blue {
+    color: #fff;
+    background-color: $blue;
+    border-radius: 0.5em;
+}
+p.bg-red{
+    color: #fff;
+    background-color: $red;
+    border-radius: 0.5em;
+    text-align: center
+}
+*/

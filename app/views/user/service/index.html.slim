@@ -11,7 +11,9 @@ table
         td
           = short_cc.category.name
         td
-          = short_cc.sub_category.try :name
+          - if short_cc.sub_category.present?
+            p[class="category #{short_cc.sub_category.get_color.value}"]
+              = short_cc.sub_category.try :name
         - short_cc.short_cps.each do |short_cp|
           td
             = link_to short_cp.price, user_service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
