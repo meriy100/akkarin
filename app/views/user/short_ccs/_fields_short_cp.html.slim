@@ -1,0 +1,9 @@
+.fields
+  h2 サブカテゴリ
+  = link_to_remove_fields "削除", f
+
+  .field
+    = f.hidden_field :id
+  .field
+    = f.label :price
+    = f.text_field :price

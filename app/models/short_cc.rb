@@ -4,4 +4,5 @@ class ShortCc < ActiveRecord::Base
   belongs_to :category
   belongs_to :sub_category
   has_many :short_cps
+  accepts_nested_attributes_for :short_cps, :allow_destroy => true
 end
