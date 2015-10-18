@@ -43,11 +43,9 @@ class User::ShortCcsController < UserController
   def update
     respond_to do |format|
       if @short_cc.update(short_cc_params)
-        format.html { redirect_to @short_cc, notice: 'Short cc was successfully updated.' }
-        format.json { render :show, status: :ok, location: @short_cc }
+        format.html { redirect_to user_short_cc_path(@short_cc), notice: 'Short cc was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @short_cc.errors, status: :unprocessable_entity }
       end
     end
   end
