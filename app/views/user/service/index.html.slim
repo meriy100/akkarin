@@ -18,3 +18,13 @@ table
           td
             = link_to short_cp.price, user_service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
 
+
+h3 Todays expense
+
+thead
+
+tbody
+  - @expense_items.each do |expence_item|
+    tr
+      td = l expence_item.date, format: :short
+
