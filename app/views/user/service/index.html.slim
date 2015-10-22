@@ -18,7 +18,26 @@ table
           td
             = link_to short_cp.price, user_service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
 
+.row
+  .col-md-8
+    h3 Todays expense
+    == render "expense_list", weekly_expenses: @expense_items
+  .col-md-4
+    .material-button-anim
+      ul class="list-inline" id="options"
+        li class="option"
+          button.material-button.option1 type="button"
+            span class="fa fa-phone" aria-hidden="true"
+        li class="option"
+          button.material-button.option2[type="button" data-toggle="modal" data-target=".bs-example-modal-lg"]
+            span class="fa fa-folder-open" aria-hidden="true"
+        li class="option"
+          button class="material-button option3" type="button"
+            span class="fa fa-wrench" aria-hidden="true"
+      button class="material-button material-button-toggle" type="button"
+        span class="fa fa-plus" aria-hidden="true"
 
-h3 Todays expense
-  
-== render "expense_list", weekly_expenses: @expense_items
+.modal.fade.bs-example-modal-lg[tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"]
+  .modal-dialog.modal-lg
+    .modal-content
+      |  ... 
