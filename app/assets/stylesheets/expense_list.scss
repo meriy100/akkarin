@@ -1,3 +1,5 @@
+@import "app_color.scss";
+
 /* carousel */
 .media-carousel 
 {
@@ -51,4 +53,17 @@
   width: 250px;
   height: 100px
 }
+
+.panel-expense-list{
+  background-color: $baseColor2;
+  border-color: $baseColor2;
+}
+
+table.expense_list{
+  thead{
+    background-color: $baseColor5;
+  }
+}
+
+
 /* End carousel */

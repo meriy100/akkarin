@@ -4,27 +4,34 @@
       <div class="carousel-inner">
         <% weekly_expenses.each do |date, expense_items| %>
           <div class="item <%= "active" if date == weekly_expenses.last.first %>">
-            <h3><%= date %></h3>
-            <table class="table">
-              <thead>
-              </thead>
-              <tbody>
-                <% expense_items.each do |expense_item| %>
-                  <tr>
-                    <td><%= l expense_item.date, format: :short %></td>
-                    <td><%= expense_item.category.name %></td>
-                    <td><%= expense_item.sub_category.try :name %></td>
-                    <td><%= expense_item.name %></td>
-                    <td><%= expense_item.price %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+            <div class="panel panel-expense-list">
+              <div class="panel-heading">
+                <h4><%= l date, format: :long %></h4>
+              </div>
+              <table class="table expense_list">
+                <thead>
+                  <th>Category</th>
+                  <th>Sub Category</th>
+                  <th>name</th>
+                  <th>price</th>
+                </thead>
+                <tbody>
+                  <% expense_items.each do |expense_item| %>
+                    <tr class="category <%= expense_item.category.color.value %>">
+                      <td><%= expense_item.category.name %></td>
+                      <td><%= expense_item.sub_category.try :name %></td>
+                      <td><%= expense_item.name %></td>
+                      <td><%= number_to_currency expense_item.price %></td>
+                    </tr>
+                 <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
         <% end %>
       </div>
       <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
       <a data-slide="next" href="#media" class="right carousel-control">›</a>
-    </div>                          
+    </div>
   </div>
 </div>
