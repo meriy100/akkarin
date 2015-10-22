@@ -34,6 +34,30 @@ p.category{
   &.red{
     background-color: $red;
   }
+  &.tea{
+    background-color: $tea;
+  }
+  &.orange{
+    background-color: $orange;
+  }
+  &.yellow{
+    background-color: $yellow;
+  }
+  &.green{
+    background-color: $green;
+  }
+  &.sky{
+    background-color: $sky;
+  }
+  &.purple{
+    background-color: $purple;
+  }
+  &.redpurple{
+    background-color: $redpurple;
+  }
+  &.boot{
+    background-color: $boot;
+  }
 }
 
 tr.category{
@@ -46,6 +70,27 @@ tr.category{
   }
   &.tea{
     background-color: $tea-background;
+  }
+  &.orange{
+    background-color: $orange;
+  }
+  &.yellow{
+    background-color: $yellow;
+  }
+  &.green{
+    background-color: $green;
+  }
+  &.sky{
+    background-color: $sky;
+  }
+  &.purple{
+    background-color: $purple;
+  }
+  &.redpurple{
+    background-color: $redpurple;
+  }
+  &.boot{
+    background-color: $boot;
   }
 }
 
