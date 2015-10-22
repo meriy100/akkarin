@@ -2,9 +2,9 @@
   <div class='col-md-8'>
     <div class="carousel slide media-carousel" id="media">
       <div class="carousel-inner">
-        <% weekly_expenses.each_with_index do |expense_items, index| %>
-          <div class="item <%= "active" if index == weekly_expenses.length - 1 %>">
-            <h3><%= expense_items.first.try :date %></h3>
+        <% weekly_expenses.each do |date, expense_items| %>
+          <div class="item <%= "active" if date == weekly_expenses.last.first %>">
+            <h3><%= date %></h3>
             <table class="table">
               <thead>
               </thead>

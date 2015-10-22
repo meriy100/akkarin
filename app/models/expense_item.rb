@@ -12,7 +12,7 @@ class ExpenseItem < ActiveRecord::Base
   def self.weekly_split user, week = (7.days.ago.to_date..Date.today)
     expenses = where(user: user).weekly_expenses
     week.map do |date|
-      expenses.search(date_eq: date).result
+      [date, expenses.search(date_eq: date).result]
     end
   end
 
