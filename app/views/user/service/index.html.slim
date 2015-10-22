@@ -20,11 +20,5 @@ table
 
 
 h3 Todays expense
-
-thead
-
-tbody
-  - @expense_items.each do |expence_item|
-    tr
-      td = l expence_item.date, format: :short
-
+  
+== render "expense_list", expense_items: @expense_items

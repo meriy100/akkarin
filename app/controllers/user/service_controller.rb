@@ -3,7 +3,9 @@ class User::ServiceController < UserController
   before_action :set_short_cp, only: :create
   def index
     @short_ccs = ShortCc.where user: @user
-    @expense_items = ExpenseItem.where user: @user, date: Date.today
+#    @expense_items = ExpenseItem.where user: @user
+#    @expense_items.weekly_expenses
+    @expense_items = ExpenseItem.weekly_split @user
   end
 
   def create
