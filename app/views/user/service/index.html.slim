@@ -19,10 +19,10 @@ table
             = link_to short_cp.price, user_service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
 
 .row
-  .col-md-8
+  .col-md-7
     h3 Todays expense
     == render "expense_list", weekly_expenses: @expense_items
-  .col-md-4
+  .col-md-5
     .material-button-anim
       ul class="list-inline" id="options"
         li class="option"
@@ -41,12 +41,12 @@ table
 .modal.fade.bs-example-modal-lg[tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"]
   .modal-dialog.modal-lg
     .modal-content
-      #result
+      #result form
 
 /.modal.hide.fade[id="form"]
 /  .modal-header
 /    button.close[type="button" class="close" data-dismiss="modal" aria-hidden="true"] &times;
 /    h3 Form
 /  .modal-body[id="form-body"]
-
+/
 

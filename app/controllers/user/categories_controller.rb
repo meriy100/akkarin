@@ -15,7 +15,6 @@ class User::CategoriesController < UserController
   # GET /categories/new
   def new
     @category = Category.new
-
   end
 
   # GET /categories/1/edit
@@ -30,7 +29,6 @@ class User::CategoriesController < UserController
     respond_to do |format|
       if @category.save
         format.html { redirect_to user_category_path(@category), notice: 'Category was successfully created.' }
-        format.js
         format.json { render json: @category, status: :created, location: @category }
       else
         format.html { render :new }
