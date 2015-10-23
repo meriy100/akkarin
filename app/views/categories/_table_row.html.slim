@@ -1,6 +1,5 @@
 tr
   td = category.name
-  td = category.sub_category.try :name
   td = category.wallet.try :name
   td = link_to 'Show', category
   td = link_to "Edit", edit_category_path(category)

@@ -1,21 +1,38 @@
-#$(document).on 'ready page:load', ->
-#  $('.create-category').on "click", ->
-#    $cur_td = $(this)
-#    word = $cur_td.text()
-#    $.ajax
-#      async: true ,
-#      url : '../user/categories/new'
-#      type: "GET",
-#      data: {id : $cur_td.id},
-#      dataType : 'json',
-#      success : (data, dataType) ->
-#        $('#myModal').modal('show')
+$(document).ready ->
+  $(document).bind 'ajaxError', 'form#new_category', (event, jqxhr, settings, exception) ->
+    # note: jqxhr.responseJSON undefined, parsing responseText instead
+    $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
+    return
+  return
+(($) ->
 
-#$('#form-body').append("<%=j render '/user/categories/form' %>")
-#$('#form').modal('show')
+  $.fn.modal_success = ->
+    # close modal
+    @modal 'hide'
+    # clear form input elements
+    # todo/note: handle textarea, select, etc
+    @find('form input[type="text"]').val ''
+    # clear error state
+    @clear_previous_errors()
+    return
 
-#$('button.close').on 'click', ()->
-#  $('#new_category').remove()
+  $.fn.render_form_errors = (errors) ->
+    $form = this
+    @clear_previous_errors()
+    model = @data('model')
+    # show error messages in input form-group help-block
+    $.each errors, (field, messages) ->
+      $input = $('input[name="' + model + '[' + field + ']"]')
+      $input.closest('.form-group').addClass('has-error').find('.help-block').html messages.join(' & ')
+      return
+    return
 
-#$('#form').modal('hide')
-#$('#new_category').remove()
+  $.fn.clear_previous_errors = ->
+    $('.form-group.has-error', this).each ->
+      $('.help-block', $(this)).html ''
+      $(this).removeClass 'has-error'
+      return
+    return
+
+  return
+) jQuery

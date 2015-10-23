@@ -13,15 +13,18 @@ table
 
   tbody
     - @categories.each do |category|
-      tr
-        td = category.name
-        td = category.color_id
-        td = category.user_id
-        td = category.wallet_id
-        td = link_to 'Show', category_path(category)
-        td = link_to 'Edit', edit_category_path(category)
-        td = link_to 'Destroy', category_path(category), data: {:confirm => 'Are you sure?'}, :method => :delete
-
+      == render partial: "table_row", locals: {category: category}
 br
 
-= link_to 'New Category', new_category_path
+= link_to 'New Person', '#new_category_modal', 'data-toggle' => 'modal'
+
+#new_category_modal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4#myModalLabel.modal-title Create new Category
+      .modal-body
+        == render 'form', modal: true
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
