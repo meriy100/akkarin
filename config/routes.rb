@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'login', to: 'login#index', as: 'login'
   get 'logout', to: 'login#logout'
   post 'login/login'
-  get 'user', to: 'user#index', as: 'user_top'
+  get '', to: 'service#index', as: 'top'
 
   root 'service#index'
   # Example of regular route:
