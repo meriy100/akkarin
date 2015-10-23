@@ -1,6 +1,6 @@
 h1 Listing categories
 
-table
+table#category_table
   thead
     tr
       th Name
@@ -16,7 +16,7 @@ table
       == render partial: "table_row", locals: {category: category}
 br
 
-= link_to 'New Person', '#new_category_modal', 'data-toggle' => 'modal'
+= link_to 'New Category', '#new_category_modal', 'data-toggle' => 'modal'
 
 #new_category_modal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-dialog

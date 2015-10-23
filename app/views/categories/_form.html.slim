@@ -1,23 +1,23 @@
 - modal ||= false
 - remote = modal ? true : false
-= form_for @category, remote: true, html: {role: :form, 'data-model' => 'category'} do |f|
+
+= form_for @category, remote: remote, html: {role: :form, 'data-model' => 'category'} do |f|
   - if @category.errors.any?
     #error_explanation
       h2 = "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
       ul
         - @category.errors.full_messages.each do |message|
           li = message
-
-  .field
+  .form-group
     = f.label :name
     = f.text_field :name
-  .field
+    span.help-block
+  .form-group
     = f.label :color_id
     = f.number_field :color_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
+    span.help-block
+  .form-group
     = f.label :wallet_id
     = f.number_field :wallet_id
+    span.help-block
   .actions = f.submit
