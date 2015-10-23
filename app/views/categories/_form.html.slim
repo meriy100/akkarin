@@ -1,4 +1,6 @@
-= form_for @category do |f|
+- modal ||= false
+- remote = modal ? true : false
+= form_for @category, remote: true, html: {role: :form, 'data-model' => 'category'} do |f|
   - if @category.errors.any?
     #error_explanation
       h2 = "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
