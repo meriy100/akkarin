@@ -18,13 +18,5 @@ br
 
 = link_to 'New Category', '#new_category_modal', 'data-toggle' => 'modal'
 
-#new_category_modal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
-        h4#myModalLabel.modal-title Create new Category
-      .modal-body
-        == render 'form', modal: true
-      .modal-footer
-        button.btn.btn-default data-dismiss="modal" type="button"  Close
+== render "form_modal"
+
