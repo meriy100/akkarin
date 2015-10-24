@@ -1,6 +1,8 @@
 tr
   td = category.name
   td = category.wallet.try :name
+  - category.sub_categories.each do |sub_category|
+    td= sub_category.name
   td = link_to 'Show', category
   td = link_to "Edit", edit_category_path(category)
   td = link_to "Destroy", category, method: :delete, date: {confirm: "Are you sure ?"}

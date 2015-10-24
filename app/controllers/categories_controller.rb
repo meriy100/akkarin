@@ -72,6 +72,23 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :color_id, :user_id, :wallet_id)
+      params.require(:category).permit(
+        :name, :color_id, :user_id, :wallet_id,
+        short_ccs_attributes: [
+          :id, :_destroy,
+          short_cps_attributes: [
+            :id, :price, :_destroy
+          ],
+        ],
+        sub_categories_attributes: [
+          :id, :price, :_destroy,
+          short_ccs_attributes: [
+            :id, :_destroy,
+            short_cps_attributes: [
+              :id, :price, :_destroy
+            ],
+          ]
+        ],
+      )
     end
 end

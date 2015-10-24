@@ -5,4 +5,12 @@ class ShortCc < ActiveRecord::Base
   belongs_to :sub_category
   has_many :short_cps
   accepts_nested_attributes_for :short_cps, :allow_destroy => true
+
+  before_validation :set_user
+
+  def set_user
+    self.user = self.sub_category.try(:user) || self.category.user
+  end
+
+
 end

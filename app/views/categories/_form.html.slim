@@ -13,13 +13,13 @@
     = f.text_field :name
     span.help-block
   .form-group
+    = f.fields_for :short_ccs, @category.short_ccs do |short_cc|
+     = render "categories/fields_sub_category", {f: short_cc}
+    = link_to_add_fields "Add short_price", f, :short_ccs
+  .form-group
     = f.fields_for :sub_categories, @category.sub_categories do |sub_category|
       = render "fields_sub_category", {f: sub_category}
     = link_to_add_fields "Add Sub Category", f, :sub_categories
-  .form-group
-    = f.fields_for :short_ccs, @category.short_ccs do |short_cc|
-      = render "categories/fields_sub_category", {f: short_cc}
-    = link_to_add_fields "Add short_price", f, :short_ccs
   .form-group
     = f.label :color_id
     = f.number_field :color_id
