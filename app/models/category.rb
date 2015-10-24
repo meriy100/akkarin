@@ -8,4 +8,6 @@ class Category < ActiveRecord::Base
   has_many :expense_items
   has_many :short_ccs
   has_many :budgets
+  accepts_nested_attributes_for :sub_categories, :allow_destroy => true
+  accepts_nested_attributes_for :short_ccs, :allow_destroy => true
 end
