@@ -16,6 +16,10 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /categories/1/edit
@@ -28,10 +32,10 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.user = @user
     respond_to do |format|
-      if @category.save
-        format.html { redirect_to category_path(@category), notice: 'Category was successfully created.' }
+       if @category.save
+         format.html { redirect_to category_path(@category), notice: 'Category was successfully created.' }
         format.json { render json: @category, status: :created, location: @category }
-        format.js   { render action: "show", status: :created, location: @category }
+        format.js
       else
         format.html { render :new }
         format.js   { render json: @category.errors, status: :unprocessable_entity }

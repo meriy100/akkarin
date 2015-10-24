@@ -30,8 +30,9 @@ table
           button.material-button.option1 type="button"
             span class="fa fa-phone" aria-hidden="true"
         li class="option"
-          button.material-button.option2.create-category[type="button" data-toggle="modal" data-target=".bs-example-modal-lg"]
+          button.material-button.option2.create-category[type="button"]
             span class="fa fa-folder-open" aria-hidden="true"
+              = link_to 'Form', new_category_path(format: :js), remote: true
         li class="option"
           button class="material-button option3" type="button"
             span class="fa fa-wrench" aria-hidden="true"
@@ -39,15 +40,13 @@ table
         span class="fa fa-plus" aria-hidden="true"
 
 
-.modal.fade.bs-example-modal-lg[tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"]
+
+#form.modal.fade[tabindex="-1", role="form"]
   .modal-dialog.modal-lg
     .modal-content
-      #result form
+      .modal-header
+        button.close[aria-hidden="true" data-dismiss="modal" type="button"]&times;
+        h3 Form
+      #form-body.modal-body
 
-/.modal.hide.fade[id="form"]
-/  .modal-header
-/    button.close[type="button" class="close" data-dismiss="modal" aria-hidden="true"] &times;
-/    h3 Form
-/  .modal-body[id="form-body"]
-/
 
