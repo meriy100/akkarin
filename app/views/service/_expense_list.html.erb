@@ -17,8 +17,8 @@
                 </thead>
                 <tbody>
                   <% expense_items.each do |expense_item| %>
-                    <tr class="category <%= expense_item.category.color.value %>">
-                      <td><%= expense_item.category.name %></td>
+                    <tr class="category <%= expense_item.category.try(:color).try(:value) %>">
+                      <td><%= expense_item.category.try :name %></td>
                       <td><%= expense_item.sub_category.try :name %></td>
                       <td><%= expense_item.name %></td>
                       <td><%= number_to_currency expense_item.price %></td>

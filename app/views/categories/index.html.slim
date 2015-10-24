@@ -1,6 +1,6 @@
 h1 Listing categories
 
-table
+table#category_table
   thead
     tr
       th Name
@@ -13,15 +13,10 @@ table
 
   tbody
     - @categories.each do |category|
-      tr
-        td = category.name
-        td = category.color_id
-        td = category.user_id
-        td = category.wallet_id
-        td = link_to 'Show', category
-        td = link_to 'Edit', edit_category_path(category)
-        td = link_to 'Destroy', category, data: {:confirm => 'Are you sure?'}, :method => :delete
-
+      == render partial: "table_row", locals: {category: category}
 br
 
 = link_to 'New Category', new_category_path
+
+/== render "form_modal"
+

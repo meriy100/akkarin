@@ -4,8 +4,10 @@ class Category < ActiveRecord::Base
   belongs_to :user
   belongs_to :wallet
   belongs_to_active_hash :color
-  has_many :sub_categories
+  has_many :sub_categories, dependent: :destroy
   has_many :expense_items
-  has_many :short_ccs
+  has_many :short_ccs, dependent: :destroy
   has_many :budgets
+  accepts_nested_attributes_for :sub_categories, :allow_destroy => true
+  accepts_nested_attributes_for :short_ccs, :allow_destroy => true
 end
