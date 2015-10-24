@@ -81,7 +81,7 @@ class CategoriesController < ApplicationController
           ],
         ],
         sub_categories_attributes: [
-          :id, :price, :_destroy,
+          :id, :name, :_destroy,
           short_ccs_attributes: [
             :id, :_destroy,
             short_cps_attributes: [
