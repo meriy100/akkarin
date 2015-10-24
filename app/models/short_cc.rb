@@ -9,7 +9,7 @@ class ShortCc < ActiveRecord::Base
   before_validation :set_user
 
   def set_user
-    self.user = self.sub_category.try(:user) || self.category.user
+  #  self.user = self.sub_category.try(:user) || self.category.user
   end
 
 

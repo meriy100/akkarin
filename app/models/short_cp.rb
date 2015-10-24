@@ -6,7 +6,7 @@ class ShortCp < ActiveRecord::Base
   before_validation :set_user
 
   def set_user
-    self.user = self.short_cc.user
+  # self.user = self.short_cc.user
   end
 
 end

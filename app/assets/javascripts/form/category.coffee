@@ -1,5 +1,12 @@
 #$(document).ready ->
-#  $(document).bind 'ajaxError', 'form#new_category', (event, jqxhr, settings, exception) ->
+#  $.fn.render_form_errors = (errors) ->
+#    console.log errors
+
+
+
+
+#$(document).ready ->
+#  $(document).bind 'ajaxError', '#from', (event, jqxhr, settings, exception) ->
 #    # note: jqxhr.responseJSON undefined, parsing responseText instead
 #    $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
 #    return
