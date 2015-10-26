@@ -5,7 +5,7 @@ p
   = @salary.name
 p
   strong User:
-  = @salary.user_id
+  = @salary.user.name
 p
   strong Price:
   = @salary.price
@@ -14,7 +14,7 @@ p
   = @salary.remarkds
 p
   strong Wallets:
-  = @salary.wallets_id
+  = @salary.wallet.name
 
 = link_to 'Edit', edit_salary_path(@salary)
 '|
