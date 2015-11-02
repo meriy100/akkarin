@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+///= require jquery.turbolinks
+///= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require_tree .
+//= require turbolinks
 
 function remove_fields(link) {
     $(link).prev("input[type=hidden]").val("1");

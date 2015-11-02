@@ -8,23 +8,26 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "form-control"
   .field
-    = f.label :user_id
-    = f.number_field :user_id
+    = f.date_field :date, class: "form-control"
   .field
     = f.label :category_id
-    = f.number_field :category_id
+    - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
+    = f.select :category_id, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
   .field
     = f.label :sub_category_id
-    = f.number_field :sub_category_id
+    - sub_categories = f.object.category.try(:sub_categories) || []
+    - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
+    = f.select :sub_category_id, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
   .field
     = f.label :price
-    = f.number_field :price
+    = f.number_field :price, class: "form-control"
   .field
     = f.label :remarks
-    = f.text_area :remarks
+    = f.text_area :remarks, class: "form-control"
   .field
     = f.label :wallet_id
-    = f.number_field :wallet_id
-  .actions = f.submit
+    = f.select :wallet_id, Wallet.where(user: @user).map{|w| [w.name, w.id]}, {}, class: "form-control"
+  .actions
+    = f.submit class: "btn btn-submit"
