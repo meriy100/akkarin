@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :shot_cps
   resources :short_ccs
   resources :expense_items
+  resources :users, only: [:new, :show, :create]
   resources :categories do
     resources :sub_categories
   end
