@@ -1,0 +1,39 @@
+.row
+  .col-md-12
+    #media.carousel.slide.media-carousel
+      .carousel-inner
+        - weekly_expenses.each do |date, expense_items|
+          div[class="item #{"active" if date == weekly_expenses.last.first}"]
+            .panel.panel-expense-list
+              .panel-heading
+                h4
+                  = l date, format: :long
+              table.table.expense_list
+                thead
+                  th
+                    | Category
+                  th
+                    | Sub Category
+                  th
+                    | name
+                  th
+                    | price
+                tfoot
+                  tr
+                    td = link_to "new", new_expense_item_path, class: "btn btn-info btn-xs"
+                tbody
+                  - expense_items.each do |expense_item|
+                    tr[class="category #{expense_item.category.try(:color).try(:value)}"]
+                      td
+                        = expense_item.category.try :name 
+                      td
+                        = expense_item.sub_category.try :name
+                      td
+                        = expense_item.name
+                      td
+                        = number_to_currency expense_item.price
+
+      a.left.carousel-control[data-slide="prev" href="#media"]
+        | ‹
+      a.right.carousel-control[data-slide="next" href="#media"]
+        | ›

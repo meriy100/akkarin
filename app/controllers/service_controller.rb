@@ -4,9 +4,8 @@ class ServiceController < ApplicationController
   def index
     @short_ccs = ShortCc.where user: @user
     # @expese_items: [[date, expense_items.where date: date], .... ]
-    @expense_items = ExpenseItem.weekly_split @user
-    # ハッシュの場合
-    @chart_data = {'2014-04-01' => 60, '2014-04-02' => 65, '2014-04-03' => 64}
+    @expense_items = ExpenseItem.where(user: @user).weekly_expenses
+    @chart_data = @expense_items.group(:date).sum :price
   end
 
   def create
