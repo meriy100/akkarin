@@ -23,6 +23,12 @@ Rails.application.routes.draw do
   get '', to: 'service#index', as: 'top'
 
   root 'service#index'
+
+  namespace "service" do
+    get "categories/sub_categories"
+   #, to: "categories#sub_categories"
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
