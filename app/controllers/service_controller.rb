@@ -6,6 +6,8 @@ class ServiceController < ApplicationController
     # @expese_items: [[date, expense_items.where date: date], .... ]
     @expense_items = ExpenseItem.where(user: @user).weekly_expenses
     @chart_data = @expense_items.group(:date).sum :price
+    @search = ExpenseItem.search(params[:q])
+    @expense_items = @search.result if params[:q]
   end
 
   def create
