@@ -6,7 +6,7 @@
         legend
 
         h1
-          | Mevius 管理画面
+          | Akkarin 管理画面
         = form_tag login_login_path, :html => {:class => "form-horizontal"} do
           .control-group
             = text_field_tag :login_name, params[:login_name], {:class => "span3 form-control", 'placeholder' => 'ユーザー名を入力して下さい'}
@@ -16,3 +16,6 @@
           br
           .control-group
             = submit_tag "ログイン", {:class => 'btn-info btn'}
+
+        hr
+        = link_to "create account", new_user_path
