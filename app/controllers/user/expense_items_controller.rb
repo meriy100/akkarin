@@ -1,9 +1,11 @@
 class User::ExpenseItemsController < UserController
   before_action :set_expense_item, only: [:show, :edit, :update, :destroy]
+  before_action :reset_wallet, only: :update
 
   # GET /expense_items
   # GET /expense_items.json
   def index
+    @wallets = Wallet.where user: @user
     @expense_items = ExpenseItem.where user: @user
   end
 
@@ -61,6 +63,12 @@ class User::ExpenseItemsController < UserController
     # Use callbacks to share common setup or constraints between actions.
     def set_expense_item
       @expense_item = ExpenseItem.find(params[:id])
+    end
+
+    def reset_wallet
+      wallet = @expense_item.get_wallet
+      wallet.price = wallet.price + @expense_item.price
+      wallet.save
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

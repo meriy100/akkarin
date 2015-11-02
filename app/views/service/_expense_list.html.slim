@@ -1,0 +1,42 @@
+.row
+  .col-md-12
+    .expense-items
+      .row
+        .col-md-1
+        .col-md-10
+          - weekly_expenses.each do |date, expense_items|
+            = button_tag l(date, format: :short),
+              class: "btn expense-items-change #{'active' if date == weekly_expenses.last.first}",
+              data: {table: date.to_s}
+        .col-md-1
+      - weekly_expenses.each do |date, expense_items|
+        div[class="items-table #{"active" if date == weekly_expenses.last.first}" id="#{date.to_s}" ]
+          .panel.panel-expense-list
+            .panel-heading
+              h4
+                = l date, format: :long
+            table.table.expense_list
+              thead
+                th
+                  | Category
+                th
+                  | Sub Category
+                th
+                  | name
+                th
+                  | price
+              tbody
+                - expense_items.each do |expense_item|
+                  tr[class="category #{expense_item.category.try(:color).try(:name)}"]
+                    td
+                      = expense_item.category.try :name 
+                    td
+                      = expense_item.sub_category.try :name
+                    td
+                      = expense_item.name
+                    td
+                      = number_to_currency expense_item.price
+
+            .panel-footer
+              = link_to "new", new_expense_item_path, class: "btn btn-info btn-xs"
+

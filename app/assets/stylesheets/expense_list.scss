@@ -1,0 +1,29 @@
+@import "app_color.scss";
+
+.panel-expense-list{
+  background-color: $baseColor2;
+  border-color: $baseColor2;
+}
+
+table.expense_list{
+  thead{
+    background-color: $baseColor5;
+  }
+}
+
+.btn{
+  &.expense-items-change{
+    color: #111;
+    background-color: $baseColor4;
+    border-color: $baseColor3;
+    border-radius: 0em;
+    margin: 0px 0px;
+    display:block;
+    float: left;
+    &.active{
+      background-color: $baseColor3;
+    }
+  }
+}
+
+/* End carousel */

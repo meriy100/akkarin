@@ -11,6 +11,27 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
+///= require jquery.turbolinks
+///= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
+//= require turbolinks
+
+function remove_fields(link) {
+    $(link).prev("input[type=hidden]").val("1");
+    $(link).closest(".fields").hide();
+}
+
+function add_fields(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g")
+    $(link).parent().before(content.replace(regexp, new_id));
+}
+/*
+$(function(){
+  $("#menu-toggle-left").click(function(e) {
+    e.preventDefault;
+    return $("#wrapper").toggleClass("active-left");
+  });
+  } );
+*/

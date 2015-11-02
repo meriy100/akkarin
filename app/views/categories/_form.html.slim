@@ -1,21 +1,31 @@
-= form_for @category do |f|
+- modal ||= false
+- remote = modal ? true : false
+
+= form_for @category, remote: remote do |f|
   - if @category.errors.any?
     #error_explanation
       h2 = "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
       ul
         - @category.errors.full_messages.each do |message|
           li = message
-
-  .field
+  .form-group
     = f.label :name
     = f.text_field :name
-  .field
+    span.help-block
+  .form-group
+    = f.fields_for :short_ccs, @category.short_ccs do |short_cc|
+     = render "categories/fields_sub_category", {f: short_cc}
+    = link_to_add_fields "Add short_price", f, :short_ccs
+  .form-group
+    = f.fields_for :sub_categories, @category.sub_categories do |sub_category|
+      = render "fields_sub_category", {f: sub_category}
+    = link_to_add_fields "Add Sub Category", f, :sub_categories
+  .form-group
     = f.label :color_id
     = f.number_field :color_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
+    span.help-block
+  .form-group
     = f.label :wallet_id
-    = f.number_field :wallet_id
+    = f.select :wallet_id, Wallet.where(user: @user).map{|t| [t.name, t.id]}
+    span.help-block
   .actions = f.submit

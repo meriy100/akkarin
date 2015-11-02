@@ -1,14 +1,16 @@
 p#notice = notice
 
 p
-  strong User:
-  = @short_cc.user_id
-p
   strong Category:
   = @short_cc.category_id
 p
   strong Sub category:
   = @short_cc.sub_category_id
+- @short_cc.short_cps.each do |short_cp|
+  p
+    strong price:
+    = short_cp.price
+
 
 = link_to 'Edit', edit_short_cc_path(@short_cc)
 '|

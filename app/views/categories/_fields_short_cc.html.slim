@@ -1,0 +1,9 @@
+.fields
+  = link_to_remove_fields "delete", f
+
+  .field
+    = f.hidden_field :id
+  .field
+    = f.fields_for :short_cps, f.object.short_cps do |short_cp|
+      = render 'categories/fields_short_cp', {f:  short_cp}
+    = link_to_add_fields "値段の追加", f, :short_cps

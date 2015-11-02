@@ -1,8 +1,9 @@
 h1 Listing expense_items
 
-table
+table.table
   thead
     tr
+      th Date
       th Name
       th User
       th Category
@@ -17,6 +18,7 @@ table
   tbody
     - @expense_items.each do |expense_item|
       tr
+        td = l expense_item.date, format: :short
         td = expense_item.name
         td = expense_item.user_id
         td = expense_item.category.try(:name)

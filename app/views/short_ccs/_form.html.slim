@@ -7,12 +7,13 @@
           li = message
 
   .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
     = f.label :category_id
-    = f.number_field :category_id
+    = f.collection_select :category_id, Category.where(user: @user), :id, :name
   .field
     = f.label :sub_category_id
     = f.number_field :sub_category_id
+  .field
+    = f.fields_for :short_cps, @short_cc.short_cps do |short_cp|
+      = render 'fields_short_cp', {f:  short_cp}
+    = link_to_add_fields "値段の追加", f, :short_cps
   .actions = f.submit
