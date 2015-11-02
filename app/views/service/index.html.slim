@@ -30,6 +30,10 @@ h1 Akkarin
           - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
           = f.select :sub_category_id_eq, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
         .col-md-3
+          = f.date_field :date_gteq, class: "form-control"
+        .col-md-3
+          = f.date_field :date_lteq, class: "form-control"
+        .col-md-3
           = f.submit "search", class: "btn btn-submit"
     = line_chart @chart_data
 
