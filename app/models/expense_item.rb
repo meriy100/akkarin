@@ -9,10 +9,23 @@ class ExpenseItem < ActiveRecord::Base
 
   scope :weekly_expenses, -> {where(date: 7.days.ago..Date.today)}
 
+  def self.dates_split week
+    week.map do |date|
+      [date, self.search(date_eq: date).result]
+    end
+  end
+
   def self.weekly_split user, week = (7.days.ago.to_date..Date.today)
     expenses = where(user: user).weekly_expenses
     week.map do |date|
       [date, expenses.search(date_eq: date).result]
+    end
+  end
+
+  def self.category_pie
+    self.group(:category_id).map do |item|
+      category = item.category
+      [category.name, self.where(category: category).sum(:price) ]
     end
   end
 

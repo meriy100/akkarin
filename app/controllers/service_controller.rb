@@ -3,9 +3,11 @@ class ServiceController < ApplicationController
   before_action :set_short_cp, only: :create
   def index
     @short_ccs = ShortCc.where user: @user
-#    @expense_items = ExpenseItem.where user: @user
-#    @expense_items.weekly_expenses
-    @expense_items = ExpenseItem.weekly_split @user
+    # @expese_items: [[date, expense_items.where date: date], .... ]
+    @expense_items = ExpenseItem.where(user: @user).weekly_expenses
+    @search = ExpenseItem.search(params[:q])
+    @expense_items = @search.result if params[:q]
+    @chart_data = @expense_items.group(:date).sum :price
   end
 
   def create
@@ -13,6 +15,8 @@ class ServiceController < ApplicationController
     @expense_item.save
     redirect_to action: :index
   end
+
+
   private
   def set_short_cc
     @short_cc = ShortCc.find params[:short_cc]
