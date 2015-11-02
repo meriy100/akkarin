@@ -3,9 +3,10 @@ class ServiceController < ApplicationController
   before_action :set_short_cp, only: :create
   def index
     @short_ccs = ShortCc.where user: @user
-#    @expense_items = ExpenseItem.where user: @user
-#    @expense_items.weekly_expenses
+    # @expese_items: [[date, expense_items.where date: date], .... ]
     @expense_items = ExpenseItem.weekly_split @user
+    # ハッシュの場合
+    @chart_data = {'2014-04-01' => 60, '2014-04-02' => 65, '2014-04-03' => 64}
   end
 
   def create
