@@ -13,7 +13,7 @@ h1 Akkarin
               = short_cc.category.name
             td
               - if short_cc.sub_category.present?
-                p[class="category #{short_cc.sub_category.get_color.value}"]
+                p[class="category #{short_cc.sub_category.get_color.name}"]
                   = short_cc.sub_category.try :name
             - short_cc.short_cps.each do |short_cp|
               td
@@ -22,21 +22,31 @@ h1 Akkarin
     // ransack form
     = search_form_for @search, url: "/service" do |f|
       .row
-        .col-md-3
+        .col-md-2
           - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
           = f.select :category_id_eq, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
-        .col-md-3
+        .col-md-2
           - sub_categories =  []
           - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
           = f.select :sub_category_id_eq, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
-        .col-md-3
+        .col-md-2
           = f.date_field :date_gteq, class: "form-control"
-        .col-md-3
+        .col-md-2
           = f.date_field :date_lteq, class: "form-control"
         .col-md-3
           = f.submit "search", class: "btn btn-submit"
-    = line_chart @chart_data
 
+    / char compornent /
+    .row
+      .col-md-10
+        = button_tag "Line Chart", class: "btn chart-change active-chart-button", data: {chart: "line-chart"}
+        = button_tag "Pie Chart", class: "btn chart-change", data: {chart: "pie-chart"}
+
+    #line-chart.active-chart
+      = line_chart @chart_data
+    #pie-chart style="display: none;"
+      = pie_chart @expense_items.category_pie,
+        colors: @expense_items.group(:category_id).map{|category_item| category_item.category.color.value}
 .row
   .col-md-7
     h3 Todays expense

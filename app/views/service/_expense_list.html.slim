@@ -23,7 +23,7 @@
                     td = link_to "new", new_expense_item_path, class: "btn btn-info btn-xs"
                 tbody
                   - expense_items.each do |expense_item|
-                    tr[class="category #{expense_item.category.try(:color).try(:value)}"]
+                    tr[class="category #{expense_item.category.try(:color).try(:name)}"]
                       td
                         = expense_item.category.try :name 
                       td

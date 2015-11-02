@@ -1,0 +1,13 @@
+@import "app_color.scss";
+
+.btn{
+  &.chart-change{
+    color: #111;
+    background-color: $baseColor4;
+    border-color: $baseColor3;
+    border-radius: 0em;
+    &.active-chart-button{
+      background-color: $baseColor3;
+    }
+  }
+}

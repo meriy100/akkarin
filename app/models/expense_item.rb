@@ -22,6 +22,13 @@ class ExpenseItem < ActiveRecord::Base
     end
   end
 
+  def self.category_pie
+    self.group(:category_id).map do |item|
+      category = item.category
+      [category.name, self.where(category: category).sum(:price) ]
+    end
+  end
+
   def update_wallet
     wallet = self.get_wallet
     wallet.price = wallet.price - self.price

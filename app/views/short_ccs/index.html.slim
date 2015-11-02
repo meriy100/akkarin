@@ -11,7 +11,7 @@ table.table
 
   tbody
     - @short_ccs.each do |short_cc|
-      tr[class="category #{short_cc.category.color.value}"]
+      tr[class="category #{short_cc.category.color.name}"]
         td = short_cc.category.name
         td = short_cc.sub_category.try :name
         - short_cc.short_cps.each do |short_cp|
