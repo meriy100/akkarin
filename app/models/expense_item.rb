@@ -15,12 +15,12 @@ class ExpenseItem < ActiveRecord::Base
     end
   end
 
-  def self.weekly_split user, week = (7.days.ago.to_date..Date.today)
-    expenses = where(user: user).weekly_expenses
-    week.map do |date|
-      [date, expenses.search(date_eq: date).result]
-    end
-  end
+#  def self.weekly_split user, week = (7.days.ago.to_date..Date.today)
+#    expenses = where(user: user).weekly_expenses
+#    week.map do |date|
+#      [date, expenses.search(date_eq: date).result]
+#    end
+#  end
 
   def self.category_pie
     self.all.group_by{|item| item.category}.map do |category, _|

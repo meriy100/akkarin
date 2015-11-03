@@ -8,17 +8,16 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "form-control"
   .field
-    = f.label :user_id
-    = f.number_field :user_id
+    = f.hidden_field :user_id
   .field
     = f.label :price
-    = f.number_field :price
+    = f.number_field :price, class: "form-control"
   .field
     = f.label :remarkds
-    = f.text_area :remarkds
+    = f.text_area :remarkds, class: "form-control"
   .field
     = f.label :wallet_id
-    = f.number_field :wallet_id
+    = f.select :wallet_id, Wallet.where(user: @user).map{|wallet| [wallet.name, wallet.id]}, {}, {class: "form-control"}
   .actions = f.submit
