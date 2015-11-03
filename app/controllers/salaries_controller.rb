@@ -1,10 +1,11 @@
 class SalariesController < ApplicationController
   before_action :set_salary, only: [:show, :edit, :update, :destroy]
+  before_action :reset_wallet, only: [:update]
 
   # GET /salaries
   # GET /salaries.json
   def index
-    @salaries = Salary.all
+    @salaries = Salary.where user_id: session[:user_id]
   end
 
   # GET /salaries/1
@@ -14,7 +15,7 @@ class SalariesController < ApplicationController
 
   # GET /salaries/new
   def new
-    @salary = Salary.new
+    @salary = Salary.new user: @user
   end
 
   # GET /salaries/1/edit
@@ -67,8 +68,14 @@ class SalariesController < ApplicationController
       @salary = Salary.find(params[:id])
     end
 
+    def reset_wallet
+      wallet = @salary.wallet
+      wallet.price = wallet.price - @salary.price
+      wallet.save
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def salary_params
-      params.require(:salary).permit(:name, :user_id, :price, :remarkds, :wallets_id)
+      params.require(:salary).permit(:name, :user_id, :price, :remarkds, :wallet_id)
     end
 end

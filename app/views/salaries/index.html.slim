@@ -11,6 +11,7 @@ table.table
       th
       th
       th
+      th
 
   tbody
     - @salaries.each do |salary|
@@ -19,6 +20,7 @@ table.table
         td = number_to_currency salary.price
         td = salary.remarkds
         td = link_to salary.wallet.name, salary.wallet
+        td = link_to 'Edit', edit_salary_path(salary), class: "btn btn-default btn-sm"
         td = link_to 'Destroy', salary, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "btn btn-danger btn-sm"
 
 br

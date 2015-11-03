@@ -17,13 +17,13 @@
                 = l date, format: :long
             table.table.expense_list
               thead
-                th
+                th.col-md-3
                   | Category
-                th
+                th.col-md-3
                   | Sub Category
-                th
+                th.col-md-3
                   | name
-                th
+                th.col-md-3
                   | price
               tbody
                 - expense_items.each do |expense_item|
@@ -38,5 +38,11 @@
                       = number_to_currency expense_item.price
 
             .panel-footer
-              = link_to "new", new_expense_item_path, class: "btn btn-info btn-xs"
+              .row
+                .col-md-3
+                  = link_to "new", new_expense_item_path, class: "btn btn-info"
+                .col-md-3
+                .col-md-3
+                .col-md-3
+                  = number_to_currency expense_items.map{|item| item.price}.sum
 
