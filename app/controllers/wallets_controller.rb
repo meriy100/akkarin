@@ -4,7 +4,7 @@ class WalletsController < ApplicationController
   # GET /wallets
   # GET /wallets.json
   def index
-    @wallets = Wallet.all
+    @wallets = Wallet.where user_id: session[:user_id]
   end
 
   # GET /wallets/1
@@ -14,7 +14,7 @@ class WalletsController < ApplicationController
 
   # GET /wallets/new
   def new
-    @wallet = Wallet.new
+    @wallet = Wallet.new user: @user
   end
 
   # GET /wallets/1/edit
