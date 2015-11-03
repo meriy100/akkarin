@@ -1,0 +1,10 @@
+/ char compornent /
+= button_tag "Line Chart", class: "btn btn-lg chart-change active-chart-button", data: {chart: "line-chart"}
+= button_tag "Pie Chart", class: "btn btn-lg chart-change", data: {chart: "pie-chart"}
+
+#line-chart.active-chart
+  = line_chart @chart_data
+#pie-chart style="display: none;"
+  = pie_chart @expense_items.category_pie,
+    colors: @expense_items.group_by{|i| i.category}.map{|category, _| category.color.value}
+    //colors: @expense_items.group(:category_id).map{|category_item| category_item.category.color.value}

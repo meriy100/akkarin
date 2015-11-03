@@ -1,0 +1,17 @@
+// ransack form
+= search_form_for search, url: "/service" do |f|
+  .row
+    .col-md-2.col-sm-6
+      - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
+      = f.select :category_id_eq, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
+    .col-md-2.col-sm-6
+      - sub_categories =  []
+      - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
+      = f.select :sub_category_id_eq, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
+    .col-md-2.col-sm-4
+      = f.date_field :date_gteq, class: "form-control"
+    .col-md-2.col-sm-4
+      = f.date_field :date_lteq, class: "form-control"
+    .col-md-3.col-sm-4
+      = f.submit "search", class: "btn btn-submit"
+
