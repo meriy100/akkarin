@@ -16,28 +16,12 @@ h1 Akkarin
               -short_cc.short_cps.each do |short_cp|
                 = link_to number_to_currency(short_cp.price), service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
   .col-md-8.col-sm-12
-    // ransack form
-    = search_form_for @search, url: "/service" do |f|
-      .row
-        .col-md-2.col-sm-6
-          - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
-          = f.select :category_id_eq, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
-        .col-md-2.col-sm-6
-          - sub_categories =  []
-          - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
-          = f.select :sub_category_id_eq, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
-        .col-md-2.col-sm-4
-          = f.date_field :date_gteq, class: "form-control"
-        .col-md-2.col-sm-4
-          = f.date_field :date_lteq, class: "form-control"
-        .col-md-3.col-sm-4
-          = f.submit "search", class: "btn btn-submit"
-
+    == render "search", search: @search
     / char compornent /
     .row
       .col-md-10
-        = button_tag "Line Chart", class: "btn chart-change active-chart-button", data: {chart: "line-chart"}
-        = button_tag "Pie Chart", class: "btn chart-change", data: {chart: "pie-chart"}
+        = button_tag "Line Chart", class: "btn btn-lg chart-change active-chart-button", data: {chart: "line-chart"}
+        = button_tag "Pie Chart", class: "btn btn-lg chart-change", data: {chart: "pie-chart"}
 
     #line-chart.active-chart
       = line_chart @chart_data
