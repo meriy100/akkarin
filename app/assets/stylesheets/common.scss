@@ -3,11 +3,27 @@
 h1{
   color: $bgColor;
   background-color: $baseColor1;
-  font-size: 3em;
 }
-table{
-  td{
+
+.smart{
+  h1{
+    font-size: 3em;
+  }
+  .btn{
+    font-size: 1em;
+  }
+  table{
+    td{
+      font-size: 1.4em;
+    }
     font-size: 1.4em;
   }
-  font-size: 1em;
+  li{
+    font-size: 1.4em;
+  }
+  p{
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
+  font-size: 1.4em;
 }
