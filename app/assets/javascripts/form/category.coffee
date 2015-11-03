@@ -1,7 +1,6 @@
 $ ->
   do ->
     replaceSelectOptions = ($select, results) ->
-      console.log results
       $select.html $('<option>')
       $.each results, ->
         option = $('<option>').val(this.id).text(this.name)

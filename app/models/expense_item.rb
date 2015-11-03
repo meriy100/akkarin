@@ -23,8 +23,7 @@ class ExpenseItem < ActiveRecord::Base
   end
 
   def self.category_pie
-    self.group(:category_id).map do |item|
-      category = item.category
+    self.all.group_by{|item| item.category}.map do |category, _|
       [category.name, self.where(category: category).sum(:price) ]
     end
   end
