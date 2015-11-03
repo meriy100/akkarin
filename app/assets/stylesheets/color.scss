@@ -94,4 +94,36 @@ tr.category{
     background-color: $boot-background;
   }
 }
-
+.select{
+  color: #111;
+  &.blue{
+    background-color: $blue-background;
+  }
+  &.red{
+    background-color: $red-background;
+  }
+  &.tea{
+    background-color: $tea-background;
+  }
+  &.orange{
+    background-color: $orange-background;
+  }
+  &.yellow{
+    background-color: $yellow-background;
+  }
+  &.green{
+    background-color: $green-background;
+  }
+  &.sky{
+    background-color: $sky-background;
+  }
+  &.purple{
+    background-color: $purple-background;
+  }
+  &.redpurple{
+    background-color: $redpurple-background;
+  }
+  &.boot{
+    background-color: $boot-background;
+  }
+}
