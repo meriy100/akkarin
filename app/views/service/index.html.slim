@@ -17,38 +17,12 @@ h1 Akkarin
                 = link_to number_to_currency(short_cp.price), service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
   .col-md-8.col-sm-12
     == render "search", search: @search
-    / char compornent /
-    .row
-      .col-md-10
-        = button_tag "Line Chart", class: "btn btn-lg chart-change active-chart-button", data: {chart: "line-chart"}
-        = button_tag "Pie Chart", class: "btn btn-lg chart-change", data: {chart: "pie-chart"}
-
-    #line-chart.active-chart
-      = line_chart @chart_data
-    #pie-chart style="display: none;"
-      = pie_chart @expense_items.category_pie,
-        colors: @expense_items.group_by{|i| i.category}.map{|category, _| category.color.value}
-        //colors: @expense_items.group(:category_id).map{|category_item| category_item.category.color.value}
+    == render "chart"
 .row
   .col-md-7
-    h3 Todays expense
     == render "expense_list", weekly_expenses: @expense_items.order(date: :desc).group_by{|item| item.date}
   .col-md-5
-    .material-button-anim
-      ul class="list-inline" id="options"
-        li class="option"
-          button.material-button.option1 type="button"
-            span class="fa fa-phone" aria-hidden="true"
-        li class="option"
-          button.material-button.option2.create-category[type="button"]
-            span class="fa fa-folder-open" aria-hidden="true"
-              = link_to 'Form', new_category_path(format: :js), remote: true
-        li class="option"
-          button class="material-button option3" type="button"
-            span class="fa fa-wrench" aria-hidden="true"
-      button class="material-button material-button-toggle" type="button"
-        span class="fa fa-plus" aria-hidden="true"
-
+    == render "toggle"
 
 // categories#new
 #form.modal.fade[tabindex="-1", role="form"]
