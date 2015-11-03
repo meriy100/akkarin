@@ -70,5 +70,10 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'pry-rails'              # railsでpryが使える
+  gem 'pry-byebug'             # pryでデバックコマンドが使える
+  gem 'awesome_print'          # プリントデバッグの出力を整形
+  gem 'hirb'                   # SQLの結果を見やすく整形してくれる
+  gem 'hirb-unicode'           # hirbの日本語対応
 end
 
