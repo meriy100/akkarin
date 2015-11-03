@@ -2,9 +2,6 @@
 Please follow me @maridlcrmn
 /*-------------------------*/
 
-body {
-//    padding-top: 50px;
-}
 
 .material-button-anim {
   position: relative;
@@ -33,24 +30,24 @@ body {
     width: 90px;
     height: 90px;
     margin: 0 auto;
-}
-.material-button-toggle span {
-    -webkit-transform: none;
-    transform:         none;
-    -webkit-transition: -webkit-transform .175s cubic-bazier(.175,.67,.83,.67);
-    transition:         transform .175s cubic-bazier(.175,.67,.83,.67);
-}
-.material-button-toggle.open {
+    span {
+      -webkit-transform: none;
+      transform:         none;
+      -webkit-transition: -webkit-transform .175s cubic-bazier(.175,.67,.83,.67);
+      transition:         transform .175s cubic-bazier(.175,.67,.83,.67);
+  }
+  &.open {
     -webkit-transform: scale(1.3,1.3);
     transform:         scale(1.3,1.3);
     -webkit-animation: toggleBtnAnim .175s;
     animation:         toggleBtnAnim .175s;
-}
-.material-button-toggle.open span {
-    -webkit-transform: rotate(45deg);
-    transform:         rotate(45deg);
-    -webkit-transition: -webkit-transform .175s cubic-bazier(.175,.67,.83,.67);
-    transition:         transform .175s cubic-bazier(.175,.67,.83,.67);
+    span {
+      -webkit-transform: rotate(45deg);
+      transform:         rotate(45deg);
+      -webkit-transition: -webkit-transform .175s cubic-bazier(.175,.67,.83,.67);
+      transition:         transform .175s cubic-bazier(.175,.67,.83,.67);
+    }
+  }
 }
 
 #options {
