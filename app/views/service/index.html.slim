@@ -46,11 +46,12 @@ h1 Akkarin
       = line_chart @chart_data
     #pie-chart style="display: none;"
       = pie_chart @expense_items.category_pie,
-        colors: @expense_items.group(:category_id).map{|category_item| category_item.category.color.value}
+        colors: @expense_items.group_by{|i| i.category}.map{|category, _| category.color.value}
+        //colors: @expense_items.group(:category_id).map{|category_item| category_item.category.color.value}
 .row
   .col-md-7
     h3 Todays expense
-    == render "expense_list", weekly_expenses: @expense_items.dates_split(@expense_items.group(:date).map{|item| item.date})
+    == render "expense_list", weekly_expenses: @expense_items.order(date: :desc).group_by{|item| item.date}
   .col-md-5
     .material-button-anim
       ul class="list-inline" id="options"
