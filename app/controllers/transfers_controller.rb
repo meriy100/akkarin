@@ -15,9 +15,6 @@ class TransfersController < ApplicationController
   # GET /transfers/new
   def new
     @transfer = Transfer.new user: @user, date: Date.today
-    @message = "controller"
-    puts @transfer.user
-    puts @transfer.date
   end
 
   # GET /transfers/1/edit
