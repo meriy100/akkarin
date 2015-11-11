@@ -6,6 +6,15 @@
         - @transfer.errors.full_messages.each do |message|
           li = message
 
+  table.table
+    tr = @transfer.user
+    tr = @transfer.price
+    tr = @transfer.date
+    tr = @transfer.from_wallet_id
+    tr = @transfer.to_wallet_id
+    tr = @transfer.commission
+
+
   .field
     = f.hidden_field :user_id
   .field

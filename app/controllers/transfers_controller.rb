@@ -29,10 +29,8 @@ class TransfersController < ApplicationController
     respond_to do |format|
       if @transfer.save
         format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
-        format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }
-        format.json { render json: @transfer.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +42,8 @@ class TransfersController < ApplicationController
       if @transfer.update(transfer_params)
         reset_wallet
         format.html { redirect_to @transfer, notice: 'Transfer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transfer }
       else
         format.html { render :edit }
-        format.json { render json: @transfer.errors, status: :unprocessable_entity }
       end
     end
   end
