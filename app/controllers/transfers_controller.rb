@@ -1,6 +1,6 @@
 class TransfersController < ApplicationController
   before_action :set_transfer, only: [:show, :edit, :update, :destroy]
-  before_action :reset_wallet, only: :edit
+  before_action :reset_wallet, only: :update
   # GET /transfers
   # GET /transfers.json
   def index

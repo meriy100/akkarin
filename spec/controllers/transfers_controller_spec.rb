@@ -136,37 +136,20 @@ RSpec.describe TransfersController, type: :controller do
         expect(assigns(:transfer)).to eq @transfer
       end
 
-      it "updates the requested transfer" do
-        transfer =
-          patch :update, {id: @trasfer, transfer: attributes_for(:transfer)}, valid_session
-        transfer.reload
-        skip("Add assertions for updated state")
+      # @contact の属性を変更すること
+      it "changes @transfer's attributes" do
+        patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: '2000')}, valid_session
+        @transfer.reload
+        expect(@transfer.price).to eq 2000
       end
 
-      it "assigns the requested transfer as @transfer" do
-        transfer = Transfer.create! valid_attributes
-        patch :update, {:id => transfer.to_param, :transfer => valid_attributes}, valid_session
-        expect(assigns(:transfer)).to eq(transfer)
-      end
-
-      it "redirects to the transfer" do
-        transfer = Transfer.create! valid_attributes
-        put :update, {:id => transfer.to_param, :transfer => valid_attributes}, valid_session
-        expect(response).to redirect_to(transfer)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the transfer as @transfer" do
-        transfer = Transfer.create! valid_attributes
-        put :update, {:id => transfer.to_param, :transfer => invalid_attributes}, valid_session
-        expect(assigns(:transfer)).to eq(transfer)
-      end
-
-      it "re-renders the 'edit' template" do
-        transfer = Transfer.create! valid_attributes
-        put :update, {:id => transfer.to_param, :transfer => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+      # @contact の属性を変更すること
+      it "changes @transfer's attributes" do
+        from_price = @transfer.from_wallet.price
+        before_price = @transfer.price
+        patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: '2000')}, valid_session
+        @transfer.reload
+        expect(@transfer.from_wallet.price).to eq(from_price + before_price - @transfer.price)
       end
     end
   end
