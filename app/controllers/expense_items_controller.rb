@@ -16,7 +16,7 @@ class ExpenseItemsController < ApplicationController
 
   # GET /expense_items/new
   def new
-    @expense_item = ExpenseItem.new
+    @expense_item = ExpenseItem.new date: Date.today
   end
 
   # GET /expense_items/1/edit
