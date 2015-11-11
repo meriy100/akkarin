@@ -1,4 +1,19 @@
 class Transfer < ActiveRecord::Base
-  validates :user_id, :price, :from_date, :to_date, presence: true
   belongs_to :user
+  belongs_to :from_wallet, class_name: "Wallet"
+  belongs_to :to_wallet, class_name: "Wallet"
+  validates :user_id, :price, :date, :from_wallet_id, :to_wallet_id, presence: true
+  before_save :update_wallet
+
+  private
+
+  def update_wallet
+    from = self.from_wallet
+    to = self.to_wallet
+    from.price = from.price - self.price
+    to.price = to.price - self.price
+    from.save
+    to.save
+  end
+
 end

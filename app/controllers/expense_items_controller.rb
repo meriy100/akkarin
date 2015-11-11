@@ -1,6 +1,6 @@
 class ExpenseItemsController < ApplicationController
   before_action :set_expense_item, only: [:show, :edit, :update, :destroy]
-  before_action :reset_wallet, only: :update
+  after_action :reset_wallet, only: :update
 
   # GET /expense_items
   # GET /expense_items.json
