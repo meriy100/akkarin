@@ -3,14 +3,12 @@ class ServiceController < ApplicationController
   before_action :set_short_cp, only: :create
   def index
     @short_ccs = ShortCc.where user: @user
-    # @expese_items: [[date, expense_items.where date: date], .... ]
-    @expense_items = ExpenseItem.where(user: @user).weekly_expenses
     if params[:q]
       @search = ExpenseItem.search(params[:q])
     elsif
       @search = ExpenseItem.search({date_gteq: 7.days.ago, date_lteq: Date.today})
     end
-    @expense_items = @search.result
+    @expense_items = @search.result.where(user: @user)
     @chart_data = @expense_items.group(:date).sum :price
   end
 
