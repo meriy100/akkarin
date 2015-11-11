@@ -10,8 +10,8 @@ class Transfer < ActiveRecord::Base
   def update_wallet
     from = self.from_wallet
     to = self.to_wallet
-    from.price = from.price - self.price
-    to.price = to.price - self.price
+    from.price = from.price - self.price - self.commission
+    to.price = to.price + self.price
     from.save
     to.save
   end

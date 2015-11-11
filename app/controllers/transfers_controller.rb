@@ -71,7 +71,7 @@ class TransfersController < ApplicationController
     def reset_wallet
       from = @transfer.from_wallet
       to = @transfer.to_wallet
-      from.price = from.price + @transfer.price
+      from.price = from.price + @transfer.price + @transfer.commission
       to.price = to.price - @transfer.price
       from.save
       to.save
