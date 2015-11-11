@@ -1,10 +1,10 @@
 h1 Listing expense_items
 
-table
+table.table
   thead
     tr
+      th Date
       th Name
-      th User
       th Category
       th Sub category
       th Price
@@ -17,13 +17,13 @@ table
   tbody
     - @expense_items.each do |expense_item|
       tr
+        td = l expense_item.date, format: :short
         td = expense_item.name
-        td = expense_item.user_id
-        td = expense_item.category_id
-        td = expense_item.sub_category_id
-        td = expense_item.price
+        td = expense_item.category.name
+        td = expense_item.sub_category.try :name
+        td = number_to_currency expense_item.price
         td = expense_item.remarks
-        td = expense_item.wallet_id
+        td = expense_item.wallet.try :name
         td = link_to 'Show', expense_item
         td = link_to 'Edit', edit_expense_item_path(expense_item)
         td = link_to 'Destroy', expense_item, data: {:confirm => 'Are you sure?'}, :method => :delete

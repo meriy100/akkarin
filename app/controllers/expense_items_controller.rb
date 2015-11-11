@@ -1,6 +1,5 @@
 class ExpenseItemsController < ApplicationController
   before_action :set_expense_item, only: [:show, :edit, :update, :destroy]
-  before_action :reset_wallet, only: :update
 
   # GET /expense_items
   # GET /expense_items.json
@@ -16,7 +15,7 @@ class ExpenseItemsController < ApplicationController
 
   # GET /expense_items/new
   def new
-    @expense_item = ExpenseItem.new
+    @expense_item = ExpenseItem.new date: Date.today
   end
 
   # GET /expense_items/1/edit
@@ -42,6 +41,7 @@ class ExpenseItemsController < ApplicationController
   def update
     respond_to do |format|
       if @expense_item.update(expense_item_params)
+        reset_wallet
         format.html { redirect_to expense_item_path(@expense_item), notice: 'Expense item was successfully created.' }
       else
         format.html { render :edit }
