@@ -1,6 +1,6 @@
 class TransfersController < ApplicationController
   before_action :set_transfer, only: [:show, :edit, :update, :destroy]
-
+  before_action :reset_wallet, only: :edit
   # GET /transfers
   # GET /transfers.json
   def index
@@ -40,7 +40,6 @@ class TransfersController < ApplicationController
   def update
     respond_to do |format|
       if @transfer.update(transfer_params)
-        reset_wallet
         format.html { redirect_to @transfer, notice: 'Transfer was successfully updated.' }
       else
         format.html { render :edit }
