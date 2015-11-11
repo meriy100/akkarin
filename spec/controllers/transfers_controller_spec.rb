@@ -60,48 +60,63 @@ RSpec.describe TransfersController, type: :controller do
   end
 
   describe "GET #new" do
-    it "assigns a new transfer as @transfer" do
+    before do
       get :new, {}, valid_session
-      expect(assigns(:transfer)).to be_a_new(Transfer)
+    end
+    it "assigns a new transfer as @transfer" do
+      expect(assigns(:transfer)).to be_a_new Transfer
+    end
+    it "Transfer user_id: 1?" do
+      expect(assigns(:transfer).user_id).to eq 1
     end
   end
 
   describe "GET #edit" do
+    before do
+      @transfer = create(:transfer)
+      get :edit, {id: @transfer}, valid_session
+    end
     it "assigns the requested transfer as @transfer" do
-      transfer = Transfer.create! valid_attributes
-      get :edit, {:id => transfer.to_param}, valid_session
-      expect(assigns(:transfer)).to eq(transfer)
+      expect(assigns(:transfer)).to eq @transfer
     end
   end
 
   describe "POST #create" do
+    before do
+      @transfers = [
+        attributes_for(:transfer),
+        attributes_for(:transfer),
+        attributes_for(:transfer)
+      ]
+    end
     context "with valid params" do
       it "creates a new Transfer" do
         expect {
-          post :create, {:transfer => valid_attributes}, valid_session
+          post :create, {transfer: attributes_for(:transfer, transfers_attributes: @transfers)}, valid_session
         }.to change(Transfer, :count).by(1)
       end
 
       it "assigns a newly created transfer as @transfer" do
-        post :create, {:transfer => valid_attributes}, valid_session
+        post :create, {transfer: attributes_for(:transfer, transfers_attributes: @transfers)}, valid_session
         expect(assigns(:transfer)).to be_a(Transfer)
         expect(assigns(:transfer)).to be_persisted
       end
 
       it "redirects to the created transfer" do
-        post :create, {:transfer => valid_attributes}, valid_session
-        expect(response).to redirect_to(Transfer.last)
+        post :create, {transfer: attributes_for(:transfer, transfers_attirbutes: @transfers)}, valid_session
+        expect(response).to redirect_to transfer_path(assigns[:transfer])
       end
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved transfer as @transfer" do
-        post :create, {:transfer => invalid_attributes}, valid_session
-        expect(assigns(:transfer)).to be_a_new(Transfer)
+      it "does not save the new transfer in the database" do
+        expect{
+          post :create, {transfer: attributes_for(:invalid_transfer)}, valid_session
+        }.not_to change(Transfer, :count)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:transfer => invalid_attributes}, valid_session
+        post :create, {transfer: attributes_for(:invalid_transfer)}, valid_session
         expect(response).to render_template("new")
       end
     end
