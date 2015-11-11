@@ -123,21 +123,29 @@ RSpec.describe TransfersController, type: :controller do
   end
 
   describe "PUT #update" do
+    before do
+      @transfer = create(:transfer, price: 2000 )
+    end
     context "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
       }
 
+      it "正しい @transfer か" do
+        patch :update, {id: @transfer, transfer: attributes_for(:transfer)}, valid_session
+        expect(assigns(:transfer)).to eq @transfer
+      end
+
       it "updates the requested transfer" do
-        transfer = Transfer.create! valid_attributes
-        put :update, {:id => transfer.to_param, :transfer => new_attributes}, valid_session
+        transfer =
+          patch :update, {id: @trasfer, transfer: attributes_for(:transfer)}, valid_session
         transfer.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested transfer as @transfer" do
         transfer = Transfer.create! valid_attributes
-        put :update, {:id => transfer.to_param, :transfer => valid_attributes}, valid_session
+        patch :update, {:id => transfer.to_param, :transfer => valid_attributes}, valid_session
         expect(assigns(:transfer)).to eq(transfer)
       end
 
