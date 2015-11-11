@@ -20,6 +20,8 @@ require 'rails_helper'
 
 RSpec.describe TransfersController, type: :controller do
 
+  render_views
+
   # This should return the minimal set of attributes required to create a valid
   # Transfer. As you add validations to Transfer, be sure to
   # adjust the attributes here as well.
@@ -34,21 +36,26 @@ RSpec.describe TransfersController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TransfersController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { {user_id: 1} }
 
   describe "GET #index" do
-    it "assigns all transfers as @transfers" do
-      transfer = Transfer.create! valid_attributes
+    it "render template index" do
       get :index, {}, valid_session
-      expect(assigns(:transfers)).to eq([transfer])
+      expect(response).to render_template :index
     end
   end
 
   describe "GET #show" do
-    it "assigns the requested transfer as @transfer" do
-      transfer = Transfer.create! valid_attributes
-      get :show, {:id => transfer.to_param}, valid_session
-      expect(assigns(:transfer)).to eq(transfer)
+    before do
+      @transfer = create(:transfer)
+      get :show, {id: @transfer}, valid_session
+    end
+    it "assigns the requested contact to @transfer" do
+      expect(assigns(:transfer)).to eq @transfer
+    end
+    # :show テンプレートを表示すること
+    it "renders the :show template" do
+      expect(response).to render_template :show
     end
   end
 
