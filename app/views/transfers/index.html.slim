@@ -1,11 +1,10 @@
 h1 Listing transfers
 
-table
+table.table
   thead
     tr
-      th User
       th Price
-      th Form wallet
+      th From wallet
       th To wallet
       th Commission
       th
@@ -15,9 +14,8 @@ table
   tbody
     - @transfers.each do |transfer|
       tr
-        td = transfer.user_id
         td = transfer.price
-        td = transfer.form_wallet_id
+        td = transfer.from_wallet_id
         td = transfer.to_wallet_id
         td = transfer.commission
         td = link_to 'Show', transfer

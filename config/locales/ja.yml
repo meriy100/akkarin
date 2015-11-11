@@ -193,3 +193,18 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
+  activerecord:
+    models:
+      user: ユーザ
+      transfer: 送金
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      transfer:
+        price: 金額
+        form_wallet: 送金元
+        to_wallet: 送金先
+        commission: 手数料

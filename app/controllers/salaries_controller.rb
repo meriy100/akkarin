@@ -1,6 +1,5 @@
 class SalariesController < ApplicationController
   before_action :set_salary, only: [:show, :edit, :update, :destroy]
-  before_action :reset_wallet, only: [:update]
 
   # GET /salaries
   # GET /salaries.json
@@ -43,6 +42,7 @@ class SalariesController < ApplicationController
   def update
     respond_to do |format|
       if @salary.update(salary_params)
+        reset_wallet
         format.html { redirect_to @salary, notice: 'Salary was successfully updated.' }
         format.json { render :show, status: :ok, location: @salary }
       else
