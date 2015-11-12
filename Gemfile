@@ -12,7 +12,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-gem "auto_i18n"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -54,6 +53,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "auto_i18n"
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'better_errors'          # エラー画面を見やすくする
   gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える
