@@ -9,7 +9,7 @@ p#notice = notice
     table.table
       thead
         tr
-          th = "mydate"
+          th = ExpenseItem.human_attribute_name :date
           th = ExpenseItem.human_attribute_name :name
           th = ExpenseItem.human_attribute_name :category
           th = ExpenseItem.human_attribute_name :sub_category

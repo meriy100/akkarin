@@ -39,7 +39,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-    auto_i18n (0.0.2)
+    auto_i18n (0.0.4)
       rails (~> 4.2.4)
     awesome_print (1.6.1)
     bcrypt (3.1.10)
@@ -64,7 +64,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     colored (1.2)
     commonjs (0.2.7)
     debug_inspector (0.0.2)
