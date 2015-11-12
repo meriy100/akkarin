@@ -7,6 +7,8 @@ class ExpenseItem < ActiveRecord::Base
 
   before_save :update_wallet
 
+  after_validation :set_wallet_id, if: "wallet.blank?"
+
   scope :weekly_expenses, -> {where(date: 7.days.ago..Date.today)}
 
   def self.dates_split week
@@ -14,13 +16,6 @@ class ExpenseItem < ActiveRecord::Base
       [date, self.search(date_eq: date).result]
     end
   end
-
-#  def self.weekly_split user, week = (7.days.ago.to_date..Date.today)
-#    expenses = where(user: user).weekly_expenses
-#    week.map do |date|
-#      [date, expenses.search(date_eq: date).result]
-#    end
-#  end
 
   def self.category_pie
     self.all.group_by{|item| item.category}.map do |category, _|
@@ -36,6 +31,11 @@ class ExpenseItem < ActiveRecord::Base
 
   def get_wallet
     self.wallet || self.sub_category.try(:wallet) || self.category.wallet
+  end
+
+  private
+  def set_wallet_id
+    self.wallet = self.get_wallet
   end
 
 end
