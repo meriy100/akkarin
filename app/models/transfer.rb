@@ -5,6 +5,7 @@ class Transfer < ActiveRecord::Base
   validates :user_id, :price, :date, :from_wallet_id, :to_wallet_id, presence: true
   before_validation :set_commission, if: "commission.blank?"
   before_save :update_wallet
+  before_destroy :reset_wallet
 
   private
 
@@ -17,6 +18,15 @@ class Transfer < ActiveRecord::Base
     to = self.to_wallet
     from.price = from.price - self.price - self.commission
     to.price = to.price + self.price
+    from.save
+    to.save
+  end
+
+  def reset_wallet
+    from = self.from_wallet
+    to = self.to_wallet
+    from.price = from.price + self.price + self.commission
+    to.price = to.price - self.price
     from.save
     to.save
   end
