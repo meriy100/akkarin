@@ -1,6 +1,18 @@
+@import "app_color.scss";
+
 body {
 	padding: 60px 0px;
 }
+
+.navbar-default{
+  a:link{
+    color: $baseColor5;
+  }
+  a:visited {
+    color: $baseColor1;
+  }
+}
+
 .navbar-collapse {
 	position: relative;
 	padding-top: 30px !important;
