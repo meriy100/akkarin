@@ -2,62 +2,38 @@ nav.navbar.navbar-default.navbar-fixed-top role="navigation"
   .container
     /! Brand and toggle get grouped for better mobile display
     .navbar-header
-      button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+      button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand href="#"  Brand
+      a.navbar-brand href="/"  Akkarin
     /! Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         li.active
-          a href="#"  Link
-        li
-          a href="#"  Link
+          a href="/" Home
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#" 
-            | Dropdown
+            | Menu
             b.caret
           ul.dropdown-menu
             li
-              a href="#"  Action
+              a href="/expense_items" 購入
             li
-              a href="#"  Another action
+              a href="/short_ccs" ショートカット
             li
-              a href="#"  Something else here
+              a href="/categories" カテゴリ
             li.divider
             li
-              a href="#"  Separated link
+              a href="/salaries" 給料
+            li
+              a href="/transfers" 送金
+            li
+              a href="/wallets" 口座
             li.divider
             li
-              a href="#"  One more separated link
+              a href="https://milk-tea-meriy100.herokuapp.com/" milk tea
       ul.nav.navbar-nav.navbar-right
         li
-          a href="#"  Link
-        li.dropdown
-          a.dropdown-toggle data-toggle="dropdown" href="#" 
-            | Dropdown
-            b.caret
-          ul.dropdown-menu
-            li
-              a href="#"  Action
-            li
-              a href="#"  Another action
-            li
-              a href="#"  Something else here
-            li.divider
-            li
-              a href="#"  Separated link
-      form.navbar-form role="search" 
-        .input-group
-          input.form-control.pull-right placeholder="Search" style="width: 300px; margin-right: 35px, border: 1px solid black; background-color: #e5e5e5;" type="text" /
-          span.input-group-btn
-            button.btn.btn-default type="reset" 
-              span.glyphicon.glyphicon-remove
-                span.sr-only Close
-            button.btn.btn-default type="submit" 
-              span.glyphicon.glyphicon-search
-                span.sr-only Search
-    /! /.navbar-collapse
-  /! /.container-fluid
+          a href="/logout" Log out
