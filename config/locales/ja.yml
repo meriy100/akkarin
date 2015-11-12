@@ -1,7 +1,14 @@
 ---
 ja:
-  mydate: 日付
+  dates: 日付
+  name: 名前
+  category: カテゴリー
+  sub_category: サブカテゴリー
+  price: 金額
   search: 検索
+
+  edit: 編集
+  back: 戻る
 
   date:
     abbr_day_names:
