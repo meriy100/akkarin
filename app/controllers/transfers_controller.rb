@@ -42,6 +42,7 @@ class TransfersController < ApplicationController
       if @transfer.update(transfer_params)
         format.html { redirect_to @transfer, notice: 'Transfer was successfully updated.' }
       else
+        non_update_wallet params[:id]
         format.html { render :edit }
       end
     end
@@ -68,6 +69,16 @@ class TransfersController < ApplicationController
       to = @transfer.to_wallet
       from.price = from.price + @transfer.price + @transfer.commission
       to.price = to.price - @transfer.price
+      from.save
+      to.save
+    end
+
+    def non_update_wallet id
+      transfer = Transfer.find id
+      from = transfer.from_wallet
+      to = transfer.to_wallet
+      from.price = from.price - transfer.price - transfer.commission
+      to.price = to.price + transfer.price
       from.save
       to.save
     end
