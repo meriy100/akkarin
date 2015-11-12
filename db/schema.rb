@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20151111065406) do
     t.integer  "user_id"
     t.integer  "price"
     t.text     "remarkds"
-    t.integer  "wallet_id"
+    t.integer  "wallets_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

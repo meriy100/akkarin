@@ -1,6 +1,6 @@
 class TransfersController < ApplicationController
   before_action :set_transfer, only: [:show, :edit, :update, :destroy]
-
+  before_action :reset_wallet, only: :update
   # GET /transfers
   # GET /transfers.json
   def index
@@ -40,9 +40,9 @@ class TransfersController < ApplicationController
   def update
     respond_to do |format|
       if @transfer.update(transfer_params)
-        reset_wallet
         format.html { redirect_to @transfer, notice: 'Transfer was successfully updated.' }
       else
+        non_update_wallet params[:id]
         format.html { render :edit }
       end
     end
@@ -69,6 +69,16 @@ class TransfersController < ApplicationController
       to = @transfer.to_wallet
       from.price = from.price + @transfer.price + @transfer.commission
       to.price = to.price - @transfer.price
+      from.save
+      to.save
+    end
+
+    def non_update_wallet id
+      transfer = Transfer.find id
+      from = transfer.from_wallet
+      to = transfer.to_wallet
+      from.price = from.price - transfer.price - transfer.commission
+      to.price = to.price + transfer.price
       from.save
       to.save
     end
