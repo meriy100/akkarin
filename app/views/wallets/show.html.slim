@@ -1,15 +1,21 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @wallet.name
-p
-  strong User:
-  = @wallet.user_id
-p
-  strong Price:
-  = @wallet.price
-
-= link_to 'Edit', edit_wallet_path(@wallet)
-'|
-= link_to 'Back', wallets_path
+.panel.panel-default
+  .panel-heading
+    h2
+      = @wallet.name
+      = number_to_currency @wallet.price
+  .panel-body
+    table.table
+      thead
+        td = Wallet.human_attribute_name :date
+      tbody
+        -@expense_items.each do |expense_item|
+          tr
+            td = l expense_item.date
+            td = expense_item.name
+            td = expense_item.category.name
+            td = expense_item.sub_category.try :name
+            td = number_to_currency expense_item.price
+= link_to 'Edit', edit_wallet_path(@wallet), class: "btn btn-primary"
+= link_to 'Back', wallets_path, class: "btn btn-default"
