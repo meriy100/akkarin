@@ -10,6 +10,7 @@ class ServiceController < ApplicationController
     end
     @expense_items = @search.result.where(user: @user)
     @chart_data = @expense_items.group(:date).sum :price
+    @wallets = Wallet.where user: @user
   end
 
   def create

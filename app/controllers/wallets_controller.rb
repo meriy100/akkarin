@@ -4,12 +4,18 @@ class WalletsController < ApplicationController
   # GET /wallets
   # GET /wallets.json
   def index
-    @wallets = Wallet.where user_id: session[:user_id]
+    @wallets = Wallet.where user_id: @user
   end
 
   # GET /wallets/1
   # GET /wallets/1.json
   def show
+    if params[:q].present?
+      @search = ExpenseItem.search params[:q]
+    else
+      @search = ExpenseItem.search({user_id_eq: @user.id, date_gteq: 7.days.ago, date_lteq: Date.today, wallet_id_eq: @wallet.id})
+    end
+    @expense_items = @search.result.order date: :desc
   end
 
   # GET /wallets/new

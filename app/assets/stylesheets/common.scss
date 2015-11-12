@@ -5,6 +5,12 @@ h1{
   background-color: $baseColor1;
 }
 
+body{
+  overflow-x : hidden ;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
 .smart{
   h1{
     font-size: 3em;
