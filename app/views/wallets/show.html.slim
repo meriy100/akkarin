@@ -8,7 +8,26 @@ p#notice = notice
   .panel-body
     table.table
       thead
-        td = Wallet.human_attribute_name :date
+        tr
+          th = "mydate"
+          th = ExpenseItem.human_attribute_name :name
+          th = ExpenseItem.human_attribute_name :category
+          th = ExpenseItem.human_attribute_name :sub_category
+          th = ExpenseItem.human_attribute_name :price
+          th Action
+        tr
+          = search_form_for @search, url: wallet_path(@wallet) do |f|
+            td
+              = f.date_field :date_gteq, class: "form-control"
+              = f.date_field :date_lteq, class: "form-control"
+            td = f.text_field :name_cont, class: "form-control"
+            - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
+            td = f.select :category_id_eq, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
+            - sub_categories =  []
+            - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
+            td = f.select :sub_category_id_eq, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
+            td
+            td = f.submit "search", class: "btn btn-submit"
       tbody
         -@expense_items.each do |expense_item|
           tr
@@ -17,5 +36,6 @@ p#notice = notice
             td = expense_item.category.name
             td = expense_item.sub_category.try :name
             td = number_to_currency expense_item.price
+            td = link_to t("Edit"), edit_expense_item_path(expense_item), class: "btn btn-default"
 = link_to 'Edit', edit_wallet_path(@wallet), class: "btn btn-primary"
 = link_to 'Back', wallets_path, class: "btn btn-default"

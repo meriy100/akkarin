@@ -1,5 +1,8 @@
 ---
 ja:
+  mydate: 日付
+  search: 検索
+
   date:
     abbr_day_names:
     - 日

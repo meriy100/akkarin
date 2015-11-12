@@ -13,7 +13,7 @@ class WalletsController < ApplicationController
     if params[:q].present?
       @search = ExpenseItem.search params[:q]
     else
-      @search = ExpenseItem.search({date_gt_eq: 7.days.ago, date_lt_eq: Date.today, wallet_id_eq: @wallet.id})
+      @search = ExpenseItem.search({user_id_eq: @user.id, date_gteq: 7.days.ago, date_lteq: Date.today, wallet_id_eq: @wallet.id})
     end
     @expense_items = @search.result.order date: :desc
   end
