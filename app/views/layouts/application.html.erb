@@ -6,25 +6,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width,user-scalable=0">
 </head>
 <body>
-  <div id="wrapper" class="active-left">
-    <%= render "shared/sidebar" %>
-    <!-- Page content -->
-    <div id="page-content-wrapper">
-      <%= render "shared/header" %>
-      <div class='continer'>
-        <div class="row">
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-11">
-            <%= yield %>
-          </div>
-        </div>
-        <hr>
-        <p class="text-muted text-center">Akkarin v0.0.5</p>
-      </div>
-    </div>
+  <%= render "shared/header" %>
+  <div class='continer'>
+    <%= yield %>
+    <hr>
+    <p class="text-muted text-center">Akkarin v0.0.5</p>
   </div>
 </body>
 </html>
