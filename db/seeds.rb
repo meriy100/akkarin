@@ -38,8 +38,8 @@ SubCategory.create([
 
 
 ExpenseItem.create([
-  {name: 'うまい棒', user_id: 1, category_id: 1, sub_category_id: 1, price: 10, wallet_id:1},
-  {name: 'チーズインハンバーグ', user_id: 1, category_id: 1, price: 500},
+  {name: 'うまい棒', user_id: 1, category_id: 1, sub_category_id: 1, price: 10, wallet_id:1, date: Date.new(2010, 10,10)},
+  {name: 'チーズインハンバーグ', user_id: 1, category_id: 1, price: 500, date: Date.new(2010, 10, 10)},
 ])
 
 ShortCc.create([
@@ -51,5 +51,9 @@ ShortCp.create([
   {user_id: 1, short_cc_id: 1, price: 100},
   {user_id: 1, short_cc_id: 1, price: 150},
   {user_id: 1, short_cc_id: 2, price: 650},
+])
+
+Transfer.create([
+  {user_id: 1, price: 10000, from_wallet_id: 2, to_wallet_id: 1, date: Date.new(2015, 10, 01), commission: 105}
 ])
 

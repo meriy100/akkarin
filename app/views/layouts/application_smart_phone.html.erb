@@ -8,20 +8,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="smart">
-<div id="wrapper" class="active-left">
-  <%= render "shared/sidebar" %>
-  <!-- Page content -->
-  <div id="page-content-wrapper">
-    <%= render "shared/header" %>
-    <div class='continer-fluid'>
-      <div class="row">
-        <div class="col-sm-1">
+  <div id="wrapper" class="active-left">
+    <%= render "shared/sidebar" %>
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+      <%= render "shared/header" %>
+      <div class='continer-fluid'>
+        <div class="row">
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-11">
+            <%= yield %>
+          </div>
         </div>
-        <div class="col-sm-11">
-          <%= yield %>
-        </div>
+        <hr>
+        <p class="text-muted text-center">Akkarin v0.0.5</p>
+      </div>
     </div>
   </div>
-</div>
 </body>
 </html>
