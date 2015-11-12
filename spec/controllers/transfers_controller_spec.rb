@@ -136,20 +136,57 @@ RSpec.describe TransfersController, type: :controller do
         expect(assigns(:transfer)).to eq @transfer
       end
 
-      # @contact の属性を変更すること
+      # @transfer の属性を変更すること
       it "changes @transfer's attributes" do
         patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: '2000')}, valid_session
         @transfer.reload
         expect(@transfer.price).to eq 2000
       end
 
-      # @contact の属性を変更すること
-      it "changes @transfer's attributes" do
+      # reset from wallet and update wallet
+      it "reset from wallet and update from wallet" do
         from_price = @transfer.from_wallet.price
         before_price = @transfer.price
         patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: '2000')}, valid_session
         @transfer.reload
         expect(@transfer.from_wallet.price).to eq(from_price + before_price - @transfer.price)
+      end
+
+      # reset to wallet and update wallet
+      it "reset to wallet and update to wallet" do
+        to_price = @transfer.to_wallet.price
+        before_price = @transfer.price
+        patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: '2000')}, valid_session
+        @transfer.reload
+        expect(@transfer.to_wallet.price).to eq(to_price - before_price + @transfer.price)
+      end
+    end
+    context "with invalid attirbutes" do
+      #値を変更しない
+      it "does not change the transfer's attibutes" do
+        patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: 3000, date: nil)}, valid_session
+        @transfer.reload
+        expect(@transfer.price).not_to eq 3000
+        expect(@transfer.date).to eq Date.new(2010, 01, 21)
+      end
+      it "re-renders the edit template" do
+        patch :update, {id: @transfer, transfer: attributes_for(:invalid_transfer)}, valid_session
+        expect(response).to render_template :edit
+      end
+      describe "non update" do
+        before do
+          @before_from = @transfer.from_wallet
+          @before_to = @transfer.to_wallet
+          patch :update, {id: @transfer, transfer: attributes_for(:transfer, price: 3000, date: nil)}, valid_session
+          @transfer.reload
+        end
+
+        it "from wallet" do
+          expect(@transfer.from_wallet.price).to eq @before_from.price
+        end
+        it "to wallet" do
+          expect(@transfer.to_wallet.price).to eq @before_to.price
+        end
       end
     end
   end
