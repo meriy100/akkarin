@@ -17,6 +17,17 @@ class ExpenseItem < ActiveRecord::Base
     end
   end
 
+  def self.column
+    column_data = self.all.group_by{|i| i.category}.map do |category, _|
+      category_items = self.where category: category
+      data = Hash[*category_items.group_by{|i| i.date}.map { |date, _|
+       [I18n.l(date), category_items.where(date: date).sum(:price)]
+      }.flatten]
+      {name: category.name, data: data}
+    end
+    column_data.sort_by{|category| category[:data].first.first}
+  end
+
   def self.category_pie
     self.all.group_by{|item| item.category}.map do |category, _|
       [category.name, self.where(category: category).sum(:price) ]

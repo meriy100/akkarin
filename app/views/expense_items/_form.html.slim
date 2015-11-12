@@ -1,4 +1,4 @@
-= form_for @expense_item do |f|
+= bootstrap_form_for @expense_item do |f|
   - if @expense_item.errors.any?
     #error_explanation
       h2 = "#{pluralize(@expense_item.errors.count, "error")} prohibited this expense_item from being saved:"
@@ -6,28 +6,22 @@
         - @expense_item.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
+  .form-group
     = f.text_field :name, class: "form-control"
-  .field
+  .form-group
     = f.date_field :date, class: "form-control"
-  .field
-    = f.label :category_id
+  .form-group
     - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
     = f.select :category_id, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
-  .field
-    = f.label :sub_category_id
+  .form-group
     - sub_categories = f.object.category.try(:sub_categories) || []
     - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
     = f.select :sub_category_id, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
-  .field
-    = f.label :price
+  .form-group
     = f.number_field :price, class: "form-control"
-  .field
-    = f.label :remarks
+  .form-group
     = f.text_area :remarks, class: "form-control"
-  .field
-    = f.label :wallet_id
+  .form-group
     = f.select :wallet_id, Wallet.where(user: @user).map{|w| [w.name, w.id]}, {}, class: "form-control"
   .actions
     = f.submit class: "btn btn-submit"
