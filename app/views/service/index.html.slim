@@ -19,9 +19,9 @@ h1 Akkarin
     == render "search", search: @search
     == render "chart"
 .row
-  .col-md-7
+  .col-md-7.col-xm-12
     == render "expense_list", weekly_expenses: @expense_items.order(date: :desc).group_by{|item| item.date}
-  .col-md-5
+  .col-md-5.col-xm-12
     //==  render "toggle"
     .panel.panel-default
       .panel-heading
