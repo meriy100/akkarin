@@ -3,8 +3,8 @@
     table.table
       thead
         tr
-          th.col-sm-5.col-md-5 カテゴリ
-          th.col-sm-7.col-md-7 ショートカット
+          th.col-xs-6.col-md-4 カテゴリ
+          th.col-xs-6.col-md-8 ショートカット
       tbody
         - @short_ccs.each do |short_cc|
           tr
@@ -13,14 +13,14 @@
                 = short_cc.category.name + ": " + short_cc.sub_category.try(:name).to_s
             td
               -short_cc.short_cps.each do |short_cp|
-                = link_to number_to_currency(short_cp.price), service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default"
-  .col-md-8.col-sm-12
+                = link_to number_to_currency(short_cp.price), service_create_path(short_cc: short_cc, short_cp: short_cp),  class: "btn btn-default btn-sm"
+  .col-md-8.col-xs-12
     == render "search", search: @search
     == render "chart"
 .row
-  .col-md-7.col-xm-12
+  .col-md-7.col-xs-12
     == render "expense_list", weekly_expenses: @expense_items.order(date: :desc).group_by{|item| item.date}
-  .col-md-5.col-xm-12
+  .col-md-5.col-xs-12
     //==  render "toggle"
     .panel.panel-default
       .panel-heading
@@ -37,13 +37,13 @@
                 td = link_to wallet.name, wallet_path(wallet)
                 td = number_to_currency wallet.price
 
-// categories#new
-#form.modal.fade[tabindex="-1", role="form"]
-  .modal-dialog.modal-lg
-    .modal-content
-      .modal-header
-        button.close[aria-hidden="true" data-dismiss="modal" type="button"]&times;
-        h3 Category
-      #form-body.modal-body
-
+/// categories#new
+/#form.modal.fade[tabindex="-2", role="form"]
+/  .modal-dialog.modal-lg
+/    .modal-content
+/      .modal-header
+/        button.close[aria-hidden="true" data-dismiss="modal" type="button"]&times;
+/        h3 Category
+/      #form-body.modal-body
+/
 
