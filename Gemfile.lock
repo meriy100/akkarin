@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/ActsAsParanoid/acts_as_paranoid.git
+  revision: ab31723bc11c82bac144cfabd4631b26307bfde1
+  specs:
+    acts_as_paranoid (0.5.0.beta2)
+      activerecord (~> 4.0)
+      activesupport (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -258,6 +266,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  acts_as_paranoid!
   auto_i18n
   awesome_print
   bcrypt-ruby

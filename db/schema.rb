@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111065406) do
+ActiveRecord::Schema.define(version: 20151114052027) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "name"
@@ -55,12 +55,29 @@ ActiveRecord::Schema.define(version: 20151111065406) do
     t.date     "date"
   end
 
+  create_table "records", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "record_type"
+    t.string   "name"
+    t.integer  "category_id"
+    t.integer  "sub_category_id"
+    t.integer  "price"
+    t.date     "date"
+    t.text     "remarks"
+    t.integer  "from_wallet_id"
+    t.integer  "to_wallet_id"
+    t.integer  "commission"
+    t.datetime "deleted_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "salaries", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.integer  "price"
     t.text     "remarkds"
-    t.integer  "wallets_id"
+    t.integer  "wallet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
