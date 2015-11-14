@@ -1,18 +1,18 @@
 @import "app_color.scss";
 
-.panel-expense-list{
+.panel-records-table{
   background-color: $baseColor2;
   border-color: $baseColor2;
 }
 
-table.expense_list{
+table.records{
   thead{
     background-color: $baseColor5;
   }
 }
 
 .btn{
-  &.expense-items-change{
+  &.records-table-change{
     color: #111;
     background-color: $baseColor4;
     border-color: $baseColor3;

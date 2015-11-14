@@ -4,12 +4,12 @@ class ServiceController < ApplicationController
   def index
     @short_ccs = ShortCc.where user: @user
     if params[:q]
-      @search = ExpenseItem.search(params[:q])
+      @search = Record.search(params[:q])
     elsif
-      @search = ExpenseItem.search({date_gteq: 7.days.ago, date_lteq: Date.today})
+      @search = Record.search({date_gteq: 7.days.ago, date_lteq: Date.today})
     end
-    @expense_items = @search.result.where(user: @user)
-    @chart_data = @expense_items.group(:date).sum :price
+    @records = @search.result.where(user: @user)
+    @chart_data = @records.group(:date).sum :price
     @wallets = Wallet.where user: @user
   end
 

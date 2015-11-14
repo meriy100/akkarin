@@ -1,0 +1,46 @@
+.expense-items
+  .row
+    .col-md-1.col-xs-1
+    .col-md-10.col-xs-10
+      - day_records.each do |date, records|
+        = button_tag l(date, format: :short),
+          class: "btn btn-lg records-table-change #{'active' if date == day_records.first.first}",
+          data: {table: date.to_s}
+    .col-md-1.col-xs-1
+  - day_records.each do |date, records|
+    div[class="records-table #{"active" if date == day_records.first.first}" id="#{date.to_s}" ]
+      .panel.panel-records-table
+        .panel-heading
+          h4
+            = l date, format: :long
+        table.table.records
+          thead
+            th.col-md-3
+              | Category
+            th.col-md-3
+              | Sub Category
+            th.col-md-3
+              | name
+            th.col-md-3
+              | price
+          tbody
+            - records.each do |record|
+              tr[class="category #{record.category.try(:color).try(:name)}"]
+                td
+                  = record.category.try :name
+                td
+                  = record.sub_category.try :name
+                td
+                  = record.name
+                td
+                  = number_to_currency record.price
+
+        .panel-footer
+          .row
+            .col-md-3
+              = link_to "new", new_record_path, class: "btn btn-info"
+            .col-md-3
+            .col-md-3
+            .col-md-3
+              = number_to_currency records.map{|item| item.price}.sum
+
