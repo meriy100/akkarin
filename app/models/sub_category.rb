@@ -4,6 +4,7 @@ class SubCategory < ActiveRecord::Base
   belongs_to :category
   belongs_to :wallet
   has_many :expense_items
+  has_many :records
   has_many :short_ccs
   has_many :budgets
   accepts_nested_attributes_for :short_ccs, :allow_destroy => true

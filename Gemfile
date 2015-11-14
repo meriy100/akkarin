@@ -55,7 +55,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "auto_i18n"
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'better_errors'          # エラー画面を見やすくする
   gem 'binding_of_caller'      # better_errorsのエラー画面でREPLが使える

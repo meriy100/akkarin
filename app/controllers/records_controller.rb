@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @records = Record.where user: @user
   end
 
   # GET /records/1
@@ -14,7 +14,7 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
-    @record = Record.new
+    @record = Record.new user: @user
   end
 
   # GET /records/1/edit
@@ -29,10 +29,8 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +41,8 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.update(record_params)
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
-        format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class RecordsController < ApplicationController
     @record.destroy
     respond_to do |format|
       format.html { redirect_to records_url, notice: 'Record was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,6 +64,7 @@ class RecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
-      params[:record]
+      params.require(:record).permit(:record_type, :name, :user_id, :category_id, :sub_category_id, :price, :date, :from_wallet_id, :to_wallet_id, :commission, :remarks
+      )
     end
 end
