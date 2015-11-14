@@ -31,10 +31,12 @@ class Record < ActiveRecord::Base
 
   def self.record_type_labels
     [
-      [I18n.t("activerecord.attributes.record.payment"), PAYMENT],
-      [I18n.t("activerecord.attributes.record.income"), INCOME],
-      [I18n.t("activerecord.attributes.record.transfer"), TRANSFER]
-
+      [I18n.t("activerecord.attributes.record.payment"), PAYMENT,
+        data: {children_path: "/categories/record_type/1"}],
+      [I18n.t("activerecord.attributes.record.income"), INCOME,
+        data: {children_path: "/categories/record_type/2"}],
+      [I18n.t("activerecord.attributes.record.transfer"), TRANSFER,
+        data: {children_path: "/categories/record_type/3"}],
     ]
   end
 

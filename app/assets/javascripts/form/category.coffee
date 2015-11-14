@@ -1,30 +1,32 @@
 $ ->
   do ->
-    replaceSelectOptions = ($select, results) ->
+    replace_select_options = ($select, results) ->
       $select.html $('<option>')
       $.each results, ->
-        option = $('<option>').val(this.id).text(this.name)
+        console.log this.data
+        option = $('<option>').val(this.id).text(this.name).attr("data-children-path", this.data)
         $select.append(option)
 
-    replaceChildrenOptions = ->
-      childrenPath = $(@).find('option:selected').data().childrenPath
-      $selectChildren = $(@).closest('form').find('.select-children')
-      if childrenPath?
+    replace_children_options = (scope) ->
+      children_path = $(scope).find("option:selected").data "children-path"
+      $select_children = $($(scope).data "target")
+      console.log children_path
+      console.log $select_children
+      if children_path?
         $.ajax
-          url: childrenPath
+          url: children_path
           dataType: "json"
           success: (results) ->
-            replaceSelectOptions($selectChildren, results)
+            replace_select_options($select_children, results)
           error: (XMLHttpRequest, textStatus, errorThrown) ->
-            console.error("Error occurred in replaceChildrenOptions")
+            console.error("Error occurred in replace_children_options")
             console.log("XMLHttpRequest: #{XMLHttpRequest.status}")
             console.log("textStatus: #{textStatus}")
             console.log("errorThrown: #{errorThrown}")
       else
-        replaceSelectOptions($selectChildren, [])
+        replace_select_options($select_children, [])
 
-    $('.select-parent').on
-      'change': replaceChildrenOptions
+    $('.select-parent').on 'change', -> replace_children_options(this)
 
 #$("document").ready ->
 #  category_change = (scope) ->

@@ -64,6 +64,16 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # for select
+  def record_type
+    categories = Category.where user: @user, record_type: params[:record_type]
+    options = categories.map do |category|
+      {name: category.name, id: category.id,
+        data: category_sub_categories_path(category)}
+    end
+    render json: options
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category

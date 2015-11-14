@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :expense_items
   resources :users, only: [:new, :show, :create]
   resources :categories do
+    collection do
+      get "record_type/:record_type", to: :record_type
+    end
     resources :sub_categories
   end
   resources :wallets

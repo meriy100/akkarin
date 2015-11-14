@@ -8,18 +8,27 @@
   .form-group
     = f.hidden_field :user_id
   .from-group
-    = f.select :record_type, Record.record_type_labels, {}, class: "form-control"
+    = f.select :record_type,
+      Record.record_type_labels,
+      {},
+      {class: "form-control select-parent", data: {target: "#select-category"}}
   .form-group
     = f.text_field :name, class: "form-control"
   .form-group
     = f.date_field :date, class: "form-control"
   .form-group
     - category_options = Category.where(user: @user).map { |c| [c.name, c.id, data: { children_path: category_sub_categories_path(c) }] }
-    = f.select :category_id, category_options, { include_blank: "Category" }, class: 'select-parent form-control'
+    = f.select :category_id,
+      category_options,
+      { include_blank: "Category" },
+      { class: 'select-parent form-control', id: "select-category", data: {target: "#select-sub-category"} }
   .form-group
     - sub_categories = f.object.category.try(:sub_categories) || []
     - sub_category_options = sub_categories.map { |c| [c.name, c.id] }
-    = f.select :sub_category_id, sub_category_options, { include_blank: "SubCategory" }, class: 'select-children form-control'
+    = f.select :sub_category_id,
+      sub_category_options,
+      { include_blank: "SubCategory" },
+      { class: 'select-children form-control', id: "select-sub-category" }
   .form-group
     = f.number_field :price, class: "form-control"
   .form-group
