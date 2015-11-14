@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20151114065926) do
     t.integer  "price",           default: 0, null: false
     t.date     "date",                        null: false
     t.text     "remarks"
-    t.integer  "from_wallet_id",              null: false
+    t.integer  "from_wallet_id"
     t.integer  "to_wallet_id"
     t.integer  "commission",      default: 0
     t.datetime "deleted_at"

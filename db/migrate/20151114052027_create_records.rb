@@ -9,7 +9,7 @@ class CreateRecords < ActiveRecord::Migration
       t.integer :price, null: false, default: 0
       t.date :date, null: false
       t.text :remarks
-      t.integer :from_wallet_id, null: false
+      t.integer :from_wallet_id
       t.integer :to_wallet_id
       t.integer :commission, default: 0
       t.datetime :deleted_at
