@@ -14,8 +14,10 @@ class ServiceController < ApplicationController
   end
 
   def create
-    @expense_item = ExpenseItem.new user: @user, category: @short_cc.category, sub_category: @short_cc.sub_category, price: @short_cp.price, date: Date.today
-    @expense_item.save
+    @record = Record.new user: @user,
+      category: @short_cc.category, sub_category: @short_cc.sub_category,
+      price: @short_cp.price, date: Date.today
+    @record.save
     redirect_to action: :index
   end
 

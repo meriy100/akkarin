@@ -13,6 +13,11 @@ class Record < ActiveRecord::Base
 
   validates :user_id, :record_type, :price, :date, :from_wallet_id, :category_id, presence: true
 
+  before_validation :set_from_wallet, if: "from_wallet.blank?"
+  before_validation :set_record_type, if: "record_type.blank?"
+
+  before_save :update_wallet
+
   def type_name
     case self.record_type
     when PAYMENT
@@ -31,6 +36,21 @@ class Record < ActiveRecord::Base
       [I18n.t("activerecord.attributes.record.transfer"), TRANSFER]
 
     ]
+  end
+
+  private
+
+  def set_from_wallet
+    self.from_wallet = self.sub_category.try(:wallet) || self.category.try(:wallet)
+  end
+
+  def set_record_type
+    self.record_type = self.category.try :record_type
+  end
+
+  def update_wallet
+    wallet = self.from_wallet
+    wallet.update price: wallet.price - self.price - self.commission
   end
 
 

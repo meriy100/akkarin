@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   extend ActiveHash::Associations::ActiveRecordExtensions
-  validates :name, :color_id, :user_id, :wallet_id, presence: true
+  validates :name, :color_id, :user_id, :wallet_id, :record_type, presence: true
   belongs_to :user
   belongs_to :wallet
   belongs_to_active_hash :color
