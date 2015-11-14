@@ -14,12 +14,12 @@ class Record < ActiveRecord::Base
   validates :user_id, :record_type, :price, :date, :category_id, presence: true
   validates :from_wallet_id, presence: true, if: Proc.new{|r| r.record_type != INCOME}
   validates :to_wallet_id, presence: true, if: Proc.new{|r| r.record_type != PAYMENT}
-  
+
   before_validation :set_from_wallet, if: "from_wallet.blank?"
   before_validation :set_record_type, if: "record_type.blank?"
 
 
-
+  before_destroy :reset_wallet
   before_save :update_wallet
 
   def type_name
@@ -64,5 +64,14 @@ class Record < ActiveRecord::Base
     end
   end
 
+  def reset_wallet
+    if from = self.from_wallet.presence and self.record_type != INCOME
+      from.update price: from.price + self.price + self.commission
+    end
+
+    if to = self.to_wallet.presence and self.record_type != PAYMENT
+      to.update price: to.price - self.price
+    end
+  end
 
 end

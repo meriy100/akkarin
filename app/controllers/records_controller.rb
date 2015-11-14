@@ -38,8 +38,10 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1
   # PATCH/PUT /records/1.json
   def update
+    before = @record
     respond_to do |format|
       if @record.update(record_params)
+        before.reset_wallet
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
       else
         format.html { render :edit }
