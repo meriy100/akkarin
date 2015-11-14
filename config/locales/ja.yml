@@ -204,6 +204,11 @@ ja:
       short: "%y/%m/%d %H:%M"
     pm: 午後
 
+  usual:
+    index: "%{model}一覧"
+    new: "新規%{model}"
+
+
   activerecord:
     models:
       user: ユーザ

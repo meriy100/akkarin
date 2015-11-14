@@ -19,7 +19,7 @@ nav.navbar.navbar-default.navbar-fixed-top role="navigation"
             b.caret
           ul.dropdown-menu
             li
-              a href="/expense_items" 購入
+              = link_to t("usual.index", model: Record.model_name.human) , records_path
             li
               a href="/short_ccs" ショートカット
             li
