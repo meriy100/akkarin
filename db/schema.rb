@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114052027) do
+ActiveRecord::Schema.define(version: 20151114065926) do
 
   create_table "budgets", force: :cascade do |t|
     t.string   "name"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20151114052027) do
     t.integer  "color_id"
     t.integer  "user_id"
     t.integer  "wallet_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "record_type"
   end
 
   create_table "colors", force: :cascade do |t|
