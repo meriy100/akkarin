@@ -1,8 +1,15 @@
 h1 Listing records
 
-table
+table.table
   thead
     tr
+      th = Record.human_attribute_name :record_type
+      th = Record.human_attribute_name :date
+      th = Record.human_attribute_name :category
+      th = Record.human_attribute_name :sub_category
+      th = Record.human_attribute_name :price
+      th = Record.human_attribute_name :remarks
+      th = Record.human_attribute_name :from_wallet
       th
       th
       th
@@ -10,6 +17,13 @@ table
   tbody
     - @records.each do |record|
       tr
+        td = record.type_name
+        td = l record.date
+        td = record.category.name
+        td = record.sub_category.try :name
+        td = number_to_currency record.price
+        td = record.remarks
+        td = record.from_wallet.name
         td = link_to 'Show', record
         td = link_to 'Edit', edit_record_path(record)
         td = link_to 'Destroy', record, data: {:confirm => 'Are you sure?'}, :method => :delete

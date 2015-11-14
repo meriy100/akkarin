@@ -8,7 +8,7 @@
   .form-group
     = f.hidden_field :user_id
   .from-group
-    = f.select :record_type, [[1, 1],[2, 2], [3, 3]], {}, class: "form-control"
+    = f.select :record_type, Record.record_type_labels, {}, class: "form-control"
   .form-group
     = f.text_field :name, class: "form-control"
   .form-group

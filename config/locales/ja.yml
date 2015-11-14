@@ -209,6 +209,7 @@ ja:
       user: ユーザ
       transfer: 送金
       wallet: 口座
+      record: 記入
     attributes:
       user:
         name: 名前
@@ -225,3 +226,18 @@ ja:
       wallet:
         name: 口座名
         price: 金額
+      record:
+        name: 品目名
+        price: 金額
+        category: 分類
+        sub_category: 小分類
+        from_wallet: 送金元
+        from_wallet_id: 送金元
+        to_wallet: 送金先
+        to_wallet_id: 送金先
+        commission: 手数料
+        date: 日付
+        remarks: 備考
+        payment: 支出
+        income: 収入
+        transfer: 送金
