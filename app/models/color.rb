@@ -10,6 +10,7 @@ class Color < ActiveHash::Base
     {:id =>  8, :name => "purple",    value: '#A53F88', back_value: "#DBA6CC"},
     {:id =>  9, :name => "redpurple", value: '#C23685', back_value: "#E7A5C9"},
     {:id => 10, :name => "boot",      value: '#7379AE', back_value: "#BFC2DF"},
+    {:id => 11, :name => "default",      value: '#666666', back_value: "##E3E3E3"},
   ]
 end
 
