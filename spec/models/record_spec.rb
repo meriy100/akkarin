@@ -90,7 +90,7 @@ RSpec.describe Record, type: :model do
           end
           describe "valid" do
             before do
-              @record.create
+              @record.save
             end
             it "from_wallet.price" do
               expect(@record.from_wallet.price).to eq(@before_from - @record.price)
@@ -101,7 +101,7 @@ RSpec.describe Record, type: :model do
           end
           describe "invalid" do
             before do
-              @record = build(:record, category_id: 1, date: nil)
+              @record.date = nil
               @record.save
             end
             it "from_wallet.price isn't changed'" do
@@ -157,6 +157,85 @@ RSpec.describe Record, type: :model do
           end
           it "to_wallet.price isn't changed" do
             expect(@to_wallet.price).to eq @before_to
+          end
+        end
+      end
+      describe "with income" do
+        describe "when create" do
+          before do
+            @record = build(:record, category_id: 3)
+            @before_from = @record.from_wallet.price
+            @before_to = @record.to_wallet.price
+          end
+          describe "valid" do
+            before do
+              @record.save
+            end
+            it "from_wallet.price isn't changed" do
+              expect(@record.from_wallet.price).to eq @before_from
+            end
+            it "to_wallet.price is changed" do
+              expect(@record.to_wallet.price).to eq(@before_to + @record.price)
+            end
+          end
+          describe "invalid" do
+            before do
+              @record.date = nil
+              @record.save
+            end
+            it "from_wallet.price isn't changed'" do
+              expect(@record.from_wallet.price).to eq @before_from
+            end
+            it "to_wallet.price isn't changed" do
+              expect(@record.to_wallet.price).to eq @before_to
+            end
+          end
+        end
+        describe "when update" do
+          before do
+            @record = create(:record, category_id: 3)
+            @before_from = @record.from_wallet.price
+            @before_to = @record.to_wallet.price
+            @price = @record.price
+          end
+          describe "valid" do
+            before do
+              @record.update price: 2000
+            end
+            it "from_wallet.price isn't changed" do
+              expect(@record.from_wallet.price).to eq @before_from
+            end
+            it "to_wallet.price is changed" do
+              expect(@record.to_wallet.price).to eq(@before_to - @price + @record.price)
+            end
+          end
+          describe "invalid" do
+            before do
+              @record.update price: 2000, date: nil
+            end
+            it "from_wallet.price isn't cahnged" do
+              expect(@record.from_wallet.price).to eq @before_from
+            end
+            it "to_wallet.price isn't changed" do
+              expect(@record.to_wallet.price).to eq @before_to
+            end
+          end
+        end
+        describe "when destroy" do
+          before do
+            @record = create(:record, category_id: 3)
+            @before_from = @record.from_wallet.price
+            @before_to = @record.to_wallet.price
+            @price = @record.price
+            @from_wallet = @record.from_wallet
+            @to_wallet = @record.to_wallet
+            @record.destroy
+          end
+          it "from_wallet.price isn't changed" do
+            expect(@from_wallet.price).to eq @before_from
+          end
+          it "to_wallet.price is changed" do
+            expect(@to_wallet.price).to eq(@before_to - @price)
           end
         end
       end
