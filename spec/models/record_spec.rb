@@ -84,13 +84,13 @@ RSpec.describe Record, type: :model do
       describe "with payment" do
         describe "when create" do
           before do
-            record = create(:record, category_id: 1)
-            @before_from = record.from_wallet.price
-            @before_to = record.to_wallet.price
+            @record = build(:record, category_id: 1)
+            @before_from = @record.from_wallet.price
+            @before_to = @record.to_wallet.price
           end
           describe "valid" do
             before do
-              @record = create(:record, category_id: 1)
+              @record.create
             end
             it "from_wallet.price" do
               expect(@record.from_wallet.price).to eq(@before_from - @record.price)
