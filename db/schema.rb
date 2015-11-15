@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 20151114065926) do
     t.string   "name"
     t.integer  "color_id"
     t.integer  "user_id"
-    t.integer  "wallet_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "from_wallet_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "record_type"
+    t.integer  "to_wallet_id"
   end
 
   create_table "colors", force: :cascade do |t|

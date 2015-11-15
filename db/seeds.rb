@@ -21,11 +21,13 @@ Wallet.create([
 
 
 Category.create([
-  {name: '食事', color_id: 1, user_id: 1, wallet_id: 1, record_type: 1},
-  {name: '衣類', color_id: 2, user_id: 1, wallet_id: 1, record_type: 1},
-  {name: '食事', color_id: 1, user_id: 2, wallet_id: 3, record_type: 1},
-  {name: '衣類', color_id: 2, user_id: 2, wallet_id: 3, record_type: 1},
-  {name: "給料", color_id: 9, user_id: 1, wallet_id: 2, record_type: 2},
+  {name: '食事', color_id: 1, user_id: 1, from_wallet_id: 1, record_type: 1},
+  {name: '衣類', color_id: 2, user_id: 1, from_wallet_id: 1, record_type: 1},
+  {name: "給料", color_id: 9, user_id: 1, to_wallet_id: 2, record_type: 2},
+  {name: "出金", color_id: 9, user_id: 1, from_wallet_id: 2, to_wallet_id: 1, record_type: Record::Transfer},
+
+  {name: '食事', color_id: 1, user_id: 2, from_wallet_id: 3, record_type: 1},
+  {name: '衣類', color_id: 2, user_id: 2, from_wallet_id: 3, record_type: 1},
 ])
 
 SubCategory.create([

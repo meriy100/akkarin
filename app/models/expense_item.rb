@@ -5,9 +5,9 @@ class ExpenseItem < ActiveRecord::Base
   belongs_to :sub_category
   belongs_to :wallet
 
-  before_save :update_wallet
-
-  after_validation :set_wallet_id, if: "wallet.blank?"
+#  before_save :update_wallet
+#
+#  after_validation :set_wallet_id, if: "wallet.blank?"
 
   scope :weekly_expenses, -> {where(date: 7.days.ago..Date.today)}
 
@@ -41,12 +41,12 @@ class ExpenseItem < ActiveRecord::Base
   end
 
   def get_wallet
-    self.wallet || self.sub_category.try(:wallet) || self.category.wallet
+  # self.wallet || self.sub_category.try(:wallet) || self.category.wallet
   end
 
   private
   def set_wallet_id
-    self.wallet = self.get_wallet
+  # self.wallet = self.get_wallet
   end
 
 end
