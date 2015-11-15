@@ -5,18 +5,7 @@ FactoryGirl.define do
     from_wallet_id 2
     to_wallet_id 1
     date Date.new(2010, 01, 21)
-
-    factory :payment do
-      category 1
-    end
-
-    factory :income do
-      category 3
-    end
-
-    factory :transfer do
-      category 4
-    end
+    category_id 1
 
     factory :invalid do
     end

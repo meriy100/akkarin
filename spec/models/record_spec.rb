@@ -80,9 +80,20 @@ RSpec.describe Record, type: :model do
       end
     end
 
-    describe "update wallet" do
-      before do
-
+    describe "wallet.price" do
+      describe "payment" do
+        before do
+          @record = create(:record, category_id: 1)
+          @before_from = @record.from_wallet.price
+          @before_to = @record.to_wallet.price
+          @record = create(:record, category_id: 1)
+        end
+        it "from_wallet.price" do
+          expect(@record.from_wallet.price).to eq(@before_from - @record.price)
+        end
+        it "to_wallet.price" do
+          expect(@record.to_wallet.price).to eq(@before_to)
+        end
       end
     end
   end

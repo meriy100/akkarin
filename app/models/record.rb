@@ -55,11 +55,13 @@ class Record < ActiveRecord::Base
   end
 
   def update_wallet
-    if from = self.from_wallet.presence
+    if self.record_type != INCOME
+      from = self.from_wallet
       from.update price: from.price - self.price - self.commission
     end
 
-    if to = self.to_wallet.presence
+    if self.record_type != PAYMENT
+      to = self.to_wallet
       to.update price: to.price + self.price
     end
   end
