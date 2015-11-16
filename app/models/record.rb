@@ -19,6 +19,7 @@ class Record < ActiveRecord::Base
   before_validation :set_record_type, if: "record_type.blank?"
 
 
+  before_update :reset_wallet
   before_destroy :reset_wallet
   before_save :update_wallet
 
@@ -44,6 +45,16 @@ class Record < ActiveRecord::Base
     ]
   end
 
+  def reset_wallet
+    if from = self.from_wallet.presence and self.record_type != INCOME
+      from.update price: from.price + Record.find(self.id).price + Record.find(self.id).commission
+    end
+
+    if to = self.to_wallet.presence and self.record_type != PAYMENT
+      to.update price: to.price - Record.find(self.id).price
+    end
+  end
+
   private
 
   def set_from_wallet
@@ -66,14 +77,5 @@ class Record < ActiveRecord::Base
     end
   end
 
-  def reset_wallet
-    if from = self.from_wallet.presence and self.record_type != INCOME
-      from.update price: from.price + self.price + self.commission
-    end
-
-    if to = self.to_wallet.presence and self.record_type != PAYMENT
-      to.update price: to.price - self.price
-    end
-  end
 
 end

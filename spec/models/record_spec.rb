@@ -283,7 +283,7 @@ RSpec.describe Record, type: :model do
               @record.update price: 2000, commission: 210
             end
             it "from_wallet.price is changed" do
-              expect(@record.from_wallet.price).to eq(@before_from - @price - @commission + @record.price + @record.commission)
+              expect(@record.from_wallet.price).to eq(@before_from + @price + @commission - @record.price - @record.commission)
             end
             it "to_wallet.price is changed" do
               expect(@record.to_wallet.price).to eq(@before_to - @price + @record.price)

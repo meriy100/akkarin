@@ -14,7 +14,7 @@ class RecordsController < ApplicationController
 
   # GET /records/new
   def new
-    @record = Record.new user: @user
+    @record = Record.new user: @user, date: Date.today
   end
 
   # GET /records/1/edit
@@ -38,10 +38,8 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1
   # PATCH/PUT /records/1.json
   def update
-    before = @record
     respond_to do |format|
       if @record.update(record_params)
-        before.reset_wallet
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
       else
         format.html { render :edit }
