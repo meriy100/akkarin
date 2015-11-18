@@ -1,7 +1,7 @@
 - modal ||= false
 - remote = modal ? true : false
 
-= form_for @category, remote: remote do |f|
+= bootstrap_form_for @category, remote: remote do |f|
   - if @category.errors.any?
     #error_explanation
       h2 = "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
@@ -9,7 +9,6 @@
         - @category.errors.full_messages.each do |message|
           li = message
   .form-group
-    = f.label :name
     = f.text_field :name
     span.help-block
   .form-group
@@ -21,11 +20,12 @@
       = render "fields_sub_category", {f: sub_category}
     = link_to_add_fields "Add Sub Category", f, :sub_categories
   .form-group
-    = f.label :color_id
     = f.select :color_id, Color.all.map{|color| [color.name, color.id, class: "select #{color.name}"] }, {include_blank: true}, {class: "form-control"}
     span.help-block
   .form-group
-    = f.label :wallet_id
-    = f.select :wallet_id, Wallet.where(user: @user).map{|t| [t.name, t.id]}
+    = f.select :from_wallet_id, Wallet.where(user: @user).map{|t| [t.name, t.id]}
+    span.help-block
+  .form-group
+    = f.select :to_wallet_id, Wallet.where(user: @user).map{|t| [t.name, t.id]}
     span.help-block
   .actions = f.submit

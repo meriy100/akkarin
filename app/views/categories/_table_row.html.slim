@@ -1,6 +1,7 @@
 tr[class="category #{category.color.name}"]
   td = category.name
-  td = category.wallet.try :name
+  td = category.from_wallet.try :name
+  td = category.to_wallet.try :name
   - category.sub_categories.each do |sub_category|
     td= sub_category.name
   td = link_to 'Show', category

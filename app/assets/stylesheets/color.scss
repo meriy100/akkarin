@@ -8,7 +8,7 @@ $blue:      #208DC3;
 $boot:      #7379AE;
 $purple:    #A53F88;
 $redpurple: #C23685;
-
+$default:   #666666;
 
 $red-background:        #ECACB5;
 $orange-background:     #F9E3AA;
@@ -20,6 +20,7 @@ $blue-background:       #9ACDE7;
 $boot-background:       #BFC2DF;
 $purple-background:     #DBA6CC;
 $redpurple-background:  #E7A5C9;
+$default-background:    #E3E3E3;
 
 
 
@@ -104,7 +105,7 @@ tr.category{
   color: #111;
   &.blue{
     background-color: $blue-background;
- jj }
+  }
   &.red{
     background-color: $red-background;
   }

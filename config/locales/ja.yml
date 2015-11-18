@@ -215,7 +215,15 @@ ja:
       transfer: 送金
       wallet: 口座
       record: 記入
+      category: 分類
+      sub_category: 小分類
     attributes:
+      category:
+        name: 分類名
+        from_wallet_id: 送金元
+        to_wallet_id: 送金先
+        color_id: 色
+      short_cc:
       user:
         name: 名前
         email: メールアドレス
