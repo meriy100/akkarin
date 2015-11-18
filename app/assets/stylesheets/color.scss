@@ -59,6 +59,9 @@ p.category{
   &.boot{
     background-color: $boot;
   }
+  &.default{
+    background-color: $default;
+  }
 }
 
 tr.category{
@@ -93,12 +96,15 @@ tr.category{
   &.boot{
     background-color: $boot-background;
   }
+  &.default{
+    background-color: $default-background;
+  }
 }
 .select{
   color: #111;
   &.blue{
     background-color: $blue-background;
-  }
+ jj }
   &.red{
     background-color: $red-background;
   }
@@ -125,5 +131,8 @@ tr.category{
   }
   &.boot{
     background-color: $boot-background;
+  }
+  &.default{
+    background-color: $default-background;
   }
 }
