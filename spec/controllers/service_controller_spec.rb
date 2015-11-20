@@ -18,7 +18,15 @@ RSpec.describe ServiceController, type: :controller do
   describe "GET #create" do
     it "with params[]"
     describe "with valid params" do
-      it "creates a new Record"
+      before do
+        @shotr_cc = create :short_cc
+        @shotr_cp = create :short_cp
+      end
+      it "creates a new Record" do
+        expect {
+          get :create, {}, valid_session, short_cc: 1, short_cp: 1
+        }.to change(Record, :count).by 1
+      end
       it "assigns a newly created record as @record"
     end
     describe "with invalid params"

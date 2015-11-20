@@ -16,6 +16,7 @@ class Record < ActiveRecord::Base
   validates :to_wallet_id, presence: true, if: Proc.new{|r| r.record_type != PAYMENT}
 
   before_validation :set_from_wallet, if: "from_wallet.blank?"
+  before_validation :set_to_wallet, if: "to_wallet.blank?"
   before_validation :set_record_type, if: "record_type.blank?"
 
 
@@ -58,7 +59,11 @@ class Record < ActiveRecord::Base
   private
 
   def set_from_wallet
-    self.from_wallet = self.sub_category.try(:wallet) || self.category.try(:wallet)
+    self.from_wallet = self.sub_category.try(:wallet) || self.category.try(:from_wallet)
+  end
+
+  def set_to_wallet
+    self.to_wallet = self.sub_category.try(:wallet) || self.category.try(:to_wallet)
   end
 
   def set_record_type
@@ -72,7 +77,7 @@ class Record < ActiveRecord::Base
     end
 
     if self.record_type != PAYMENT
-      to = self.to_wallet
+      to = self.to_wallet 
       to.update price: to.price + self.price
     end
   end
