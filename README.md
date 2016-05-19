@@ -8,7 +8,7 @@ rails 4.2.4
 
 
 ```
-bundle install --path vendor/bundle
+bundle install --path vendor/bundle --without production
 ```
 
 ```
